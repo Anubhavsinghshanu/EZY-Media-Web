@@ -20,10 +20,24 @@
   --font-poppins: var(--font-poppins);
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  /* Prevent zoom on mobile */
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-montserrat), sans-serif;
+  /* Smooth scrolling on mobile */
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
 }
 
 h1,
@@ -91,4 +105,66 @@ h6 {
 .mask-gradient-b {
   -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+
+  /* Ensure proper viewport on mobile */
+  body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+
+  /* Reduce motion for better mobile performance */
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Touch-friendly buttons */
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Prevent text overflow */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Optimize scrollbar for mobile */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+}
+
+/* Perspective fix for mobile 3D effects */
+.perspective-mobile {
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+/* Smooth transitions */
+.smooth-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

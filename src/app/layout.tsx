@@ -23,6 +23,13 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "EZY MEDIA | Make It Trending",
   description: "Premium Social Media Agency. We transform your digital presence through data-driven marketing and creator collaborations.",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+  },
+  themeColor: "#0a0a0a",
 };
 
 export default function RootLayout({
