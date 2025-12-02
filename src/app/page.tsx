@@ -7,6 +7,7 @@ import DistributionCharts from "@/components/DistributionCharts";
 import Services from "@/components/Services";
 import SocialProof from "@/components/SocialProof"; // Added this import
 import MajorAchievements from "@/components/MajorAchievements";
+import TrustProof from "@/components/TrustProof";
 import SmoothScroll from "@/components/SmoothScroll";
 
 export default function Home() {
@@ -22,6 +23,7 @@ export default function Home() {
       <Services />
       <SocialProof /> {/* Added this component */}
       <MajorAchievements />
+      <TrustProof />
 
       {/* Footer Placeholder */}
       <footer className="py-12 border-t border-white/10 mt-20">

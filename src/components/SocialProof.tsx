@@ -406,7 +406,7 @@ function AnalyticsCard({ creator, index }: { creator: any, index: number }) {
             {/* Key Metrics */}
             <div className="px-5 mt-2 grid grid-cols-2 gap-4 relative z-10">
                 <div>
-                    <p className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Avg Views Delivered</p>
+                    <p className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">All Time Highest Reach</p>
                     <p className="text-lg font-bold text-white font-mono">{creator.avgReach}</p>
                 </div>
                 <div>

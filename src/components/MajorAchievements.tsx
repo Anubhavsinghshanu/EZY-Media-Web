@@ -709,7 +709,7 @@ export default function MajorAchievements() {
                                         { val: "2,500+", label: "Verified Reposts" },
                                         { val: "400+", label: "Active Creators" },
                                         { val: "7 Days", label: "Avg Duration" },
-                                        { val: "500K", label: "Avg Reach" },
+                                        { val: "500K", label: "Recently Delivered" },
                                         { val: "12/12", label: "Videos 20M+" },
                                         { val: "Live", label: "Optimization" },
                                     ].map((stat, i) => (
