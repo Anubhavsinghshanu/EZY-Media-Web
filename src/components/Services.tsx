@@ -253,20 +253,30 @@ export default function Services() {
                             </div>
 
                             {/* Content */}
-                            <div className="relative z-10 flex-grow">
+                            <div className="relative z-10 flex-grow flex flex-col">
                                 <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-300">
                                     {service.title}
                                 </h3>
-                                <p className="text-gray-400 leading-relaxed mb-6">
+                                <p className="text-gray-400 leading-relaxed mb-6 text-sm">
                                     {service.description}
                                 </p>
 
-                                {/* Sub-services for Content Creation */}
+                                {/* Visible Data Points */}
+                                <div className="mt-auto space-y-3 bg-black/20 rounded-xl p-4 border border-white/5">
+                                    {service.popup.bullets.map((bullet, idx) => (
+                                        <div key={idx} className="flex items-start space-x-3">
+                                            <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-gradient-to-r ${service.accent}`} />
+                                            <span className="text-sm text-gray-300 font-medium leading-relaxed">{bullet}</span>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* Sub-services for Content Creation (if any) */}
                                 {service.subServices && (
-                                    <ul className="space-y-2 mt-4">
+                                    <ul className="space-y-2 mt-4 pt-4 border-t border-white/10">
                                         {service.subServices.map((sub, idx) => (
-                                            <li key={idx} className="flex items-center text-sm text-gray-500">
-                                                <span className={`w-1.5 h-1.5 rounded-full mr-2 bg-gradient-to-r ${service.accent}`} />
+                                            <li key={idx} className="flex items-center text-xs text-gray-500 uppercase tracking-wider font-semibold">
+                                                <span className={`w-1 h-1 rounded-full mr-2 bg-gradient-to-r ${service.accent}`} />
                                                 {sub}
                                             </li>
                                         ))}
@@ -277,58 +287,15 @@ export default function Services() {
                             {/* Bottom Decoration */}
                             <div className={`mt-6 h-1 w-12 rounded-full bg-gradient-to-r ${service.accent} opacity-50 group-hover:w-full transition-all duration-500`} />
 
-                            {/* PREMIUM POPUP */}
-                            <motion.div
-                                variants={getPopupVariants(service.popup.animation)}
-                                transition={{ duration: 0.4, ease: "easeOut" }}
-                                className="absolute inset-4 z-20 rounded-2xl bg-black/90 backdrop-blur-xl border border-white/10 p-6 flex flex-col justify-center"
-                            >
-                                <div className="space-y-3">
-                                    {service.popup.bullets.map((bullet, idx) => (
-                                        <motion.div
-                                            key={idx}
-                                            initial={{ opacity: 0, x: -10 }}
-                                            variants={{
-                                                hover: { opacity: 1, x: 0, transition: { delay: 0.1 + (idx * 0.05) } }
-                                            }}
-                                            className="flex items-start space-x-3"
-                                        >
-                                            <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-gradient-to-r ${service.accent}`} />
-                                            <span className="text-sm text-gray-200 font-medium leading-relaxed">{bullet}</span>
-                                        </motion.div>
-                                    ))}
-                                </div>
-
-                                {/* Popup Logos */}
-                                <div className="absolute bottom-4 right-4 flex space-x-2">
-                                    {(service.popup.logo === 'instagram' || service.popup.logo === 'both') && (
-                                        <motion.div
-                                            variants={{
-                                                hover: {
-                                                    scale: [1, 1.2, 1],
-                                                    filter: "drop-shadow(0 0 8px rgba(225, 48, 108, 0.5))",
-                                                    transition: { duration: 0.8, repeat: Infinity, repeatDelay: 1 }
-                                                }
-                                            }}
-                                        >
-                                            <FaInstagram className="w-6 h-6 text-[#E1306C]" />
-                                        </motion.div>
-                                    )}
-                                    {(service.popup.logo === 'youtube' || service.popup.logo === 'both') && (
-                                        <motion.div
-                                            variants={{
-                                                hover: {
-                                                    x: [-10, 0],
-                                                    opacity: [0, 1],
-                                                    transition: { duration: 0.3 }
-                                                }
-                                            }}
-                                        >
-                                            <FaYoutube className="w-6 h-6 text-[#FF0000]" />
-                                        </motion.div>
-                                    )}
-                                </div>
-                            </motion.div>
+                            {/* Logos (Visible) */}
+                            <div className="absolute top-8 right-8 flex space-x-2 opacity-50 group-hover:opacity-100 transition-opacity duration-300">
+                                {(service.popup.logo === 'instagram' || service.popup.logo === 'both') && (
+                                    <FaInstagram className="w-5 h-5 text-[#E1306C]" />
+                                )}
+                                {(service.popup.logo === 'youtube' || service.popup.logo === 'both') && (
+                                    <FaYoutube className="w-5 h-5 text-[#FF0000]" />
+                                )}
+                            </div>
                         </motion.div>
                     ))}
                 </motion.div>
