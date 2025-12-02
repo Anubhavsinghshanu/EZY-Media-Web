@@ -53,7 +53,16 @@ export default function Services() {
                     "💎 Zero-Friction Campaign Mgmt"
                 ],
                 logo: "instagram",
-                animation: "up"
+                animation: "up",
+                visualType: "barChart", // Bar chart showing creator categories
+                chartData: {
+                    categories: [
+                        { name: "Fashion", count: 120, color: "#FF0080" },
+                        { name: "Music", count: 95, color: "#FF6600" },
+                        { name: "Tech", count: 85, color: "#9D4EDD" },
+                        { name: "Lifestyle", count: 100, color: "#06FFA5" }
+                    ]
+                }
             }
         },
         {
@@ -70,7 +79,17 @@ export default function Services() {
                     "🚀 Guaranteed Trending Velocity"
                 ],
                 logo: "youtube",
-                animation: "right"
+                animation: "right",
+                visualType: "trendLine", // Trend line showing viral growth
+                chartData: {
+                    viewsOverTime: [
+                        { day: "Day 1", views: 2.5 },
+                        { day: "Day 2", views: 8.2 },
+                        { day: "Day 3", views: 25.6 },
+                        { day: "Day 4", views: 67.3 },
+                        { day: "Day 5", views: 120.5 }
+                    ]
+                }
             }
         },
         {
@@ -87,7 +106,16 @@ export default function Services() {
                     "🔄 Automated Lead Pipelines"
                 ],
                 logo: "instagram",
-                animation: "left"
+                animation: "left",
+                visualType: "pieChart", // Pie chart showing service distribution
+                chartData: {
+                    services: [
+                        { name: "Content", percentage: 35, color: "#00F260" },
+                        { name: "Engagement", percentage: 30, color: "#0575E6" },
+                        { name: "Analytics", percentage: 20, color: "#06FFA5" },
+                        { name: "Strategy", percentage: 15, color: "#00D9FF" }
+                    ]
+                }
             }
         },
         {
@@ -110,7 +138,15 @@ export default function Services() {
                     "🧠 Psychology-Based Hooks"
                 ],
                 logo: "both",
-                animation: "up"
+                animation: "up",
+                visualType: "comparison", // Before/After comparison
+                chartData: {
+                    metrics: [
+                        { label: "Avg Watch Time", before: "3.2s", after: "12.8s", improvement: "+300%" },
+                        { label: "Retention Rate", before: "28%", after: "74%", improvement: "+164%" },
+                        { label: "Shares", before: "120", after: "2.4K", improvement: "+1900%" }
+                    ]
+                }
             }
         },
         {
@@ -127,7 +163,16 @@ export default function Services() {
                     "🔗 Cross-Channel Synergy"
                 ],
                 logo: "instagram",
-                animation: "right"
+                animation: "right",
+                visualType: "funnel", // Conversion funnel
+                chartData: {
+                    stages: [
+                        { name: "Impressions", value: 100, color: "#00c6ff" },
+                        { name: "Engagement", value: 68, color: "#0095ff" },
+                        { name: "Clicks", value: 42, color: "#0072ff" },
+                        { name: "Conversions", value: 28, color: "#0050cc" }
+                    ]
+                }
             }
         },
         {
@@ -144,7 +189,15 @@ export default function Services() {
                     "🌟 Long-Term Equity Building"
                 ],
                 logo: "none",
-                animation: "left"
+                animation: "left",
+                visualType: "instaDM", // Instagram DM mockup
+                chartData: {
+                    messages: [
+                        { from: "creator", text: "Need help with brand positioning 🎯", time: "2m ago" },
+                        { from: "creator", text: "Heard EZY Media is the best!", time: "1m ago" },
+                        { from: "ezy", text: "Let's build your legacy 👑", time: "Just now" }
+                    ]
+                }
             }
         }
     ];
@@ -200,7 +253,243 @@ export default function Services() {
             hidden: hiddenWithOffset,
             visible: hiddenWithOffset, // Stays hidden when parent is visible (default state)
             hover: visibleState // Only shows on hover
-        };
+        }
+    };
+
+    // Chart Rendering Helper
+    const renderChartVisualization = (service: typeof services[0]) => {
+        const { visualType, chartData } = service.popup;
+
+        switch (visualType) {
+            case 'barChart':
+                return (
+                    <div className="space-y-3">
+                        <h5 className="text-sm font-bold text-white mb-3">Creator Network Distribution</h5>
+                        {chartData.categories.map((cat: any, idx: number) => (
+                            <motion.div
+                                key={cat.name}
+                                initial={{ width: 0 }}
+                                animate={{ width: '100%' }}
+                                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                            >
+                                <div className="flex items-center gap-3 mb-2">
+                                    <span className="text-xs text-gray-400 w-20">{cat.name}</span>
+                                    <div className="flex-1 h-6 bg-gray-800 rounded-full overflow-hidden">
+                                        <motion.div
+                                            className="h-full rounded-full"
+                                            style={{ backgroundColor: cat.color }}
+                                            initial={{ width: 0 }}
+                                            animate={{ width: `${(cat.count / 120) * 100}%` }}
+                                            transition={{ duration: 0.8, delay: idx * 0.15 }}
+                                        />
+                                    </div>
+                                    <span className="text-xs font-bold text-white w-8">{cat.count}</span>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                );
+
+            case 'trendLine':
+                return (
+                    <div>
+                        <h5 className="text-sm font-bold text-white mb-3">Viral Growth Trajectory</h5>
+                        <div className="relative h-32">
+                            <svg className="w-full h-full" viewBox="0 0 200 80">
+                                {/* Grid lines */}
+                                {[0, 25, 50, 75].map((y) => (
+                                    <line key={y} x1="0" y1={y} x2="200" y2={y} stroke="#333" strokeWidth="0.5" />
+                                ))}
+
+                                {/* Trend line */}
+                                <motion.polyline
+                                    points={chartData.viewsOverTime.map((point: any, idx: number) =>
+                                        `${idx * 50},${80 - (point.views / 120.5) * 70}`
+                                    ).join(' ')}
+                                    fill="none"
+                                    stroke="url(#trendGradient)"
+                                    strokeWidth="3"
+                                    initial={{ pathLength: 0 }}
+                                    animate={{ pathLength: 1 }}
+                                    transition={{ duration: 1.5, ease: "easeOut" }}
+                                />
+
+                                {/* Data points */}
+                                {chartData.viewsOverTime.map((point: any, idx: number) => (
+                                    <motion.circle
+                                        key={idx}
+                                        cx={idx * 50}
+                                        cy={80 - (point.views / 120.5) * 70}
+                                        r="4"
+                                        fill="#FF0000"
+                                        initial={{ scale: 0 }}
+                                        animate={{ scale: 1 }}
+                                        transition={{ duration: 0.3, delay: idx * 0.2 }}
+                                    />
+                                ))}
+
+                                <defs>
+                                    <linearGradient id="trendGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stopColor="#FF0000" />
+                                        <stop offset="100%" stopColor="#FF4D4D" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div className="flex justify-between mt-2 text-[10px] text-gray-500">
+                            {chartData.viewsOverTime.map((point: any) => (
+                                <span key={point.day}>{point.day}</span>
+                            ))}
+                        </div>
+                        <p className="text-center text-xs text-green-400 font-bold mt-2">+120M views in 5 days</p>
+                    </div>
+                );
+
+            case 'pieChart':
+                return (
+                    <div>
+                        <h5 className="text-sm font-bold text-white mb-3">Service Distribution</h5>
+                        <div className="relative w-32 h-32 mx-auto mb-4">
+                            <svg viewBox="0 0 100 100" className="transform -rotate-90">
+                                {chartData.services.map((service: any, idx: number) => {
+                                    const prevPercentages = chartData.services
+                                        .slice(0, idx)
+                                        .reduce((sum: number, s: any) => sum + s.percentage, 0);
+                                    const circumference = 2 * Math.PI * 40;
+                                    const offset = (prevPercentages / 100) * circumference;
+                                    const dashArray = `${(service.percentage / 100) * circumference} ${circumference}`;
+
+                                    return (
+                                        <motion.circle
+                                            key={service.name}
+                                            cx="50"
+                                            cy="50"
+                                            r="40"
+                                            fill="none"
+                                            stroke={service.color}
+                                            strokeWidth="20"
+                                            strokeDasharray={dashArray}
+                                            strokeDashoffset={-offset}
+                                            initial={{ strokeDasharray: `0 ${circumference}` }}
+                                            animate={{ strokeDasharray: dashArray }}
+                                            transition={{ duration: 1, delay: idx * 0.2 }}
+                                        />
+                                    );
+                                })}
+                            </svg>
+                        </div>
+                        <div className="space-y-1">
+                            {chartData.services.map((service: any) => (
+                                <div key={service.name} className="flex items-center justify-between text-xs">
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-2 h-2 rounded-full" style={{ backgroundColor: service.color }} />
+                                        <span className="text-gray-300">{service.name}</span>
+                                    </div>
+                                    <span className="text-white font-bold">{service.percentage}%</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                );
+
+            case 'comparison':
+                return (
+                    <div>
+                        <h5 className="text-sm font-bold text-white mb-3">Before vs After EZY Media</h5>
+                        <div className="space-y-3">
+                            {chartData.metrics.map((metric: any, idx: number) => (
+                                <motion.div
+                                    key={metric.label}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: idx * 0.15 }}
+                                    className="bg-black/30 rounded-lg p-3"
+                                >
+                                    <p className="text-xs text-gray-400 mb-2">{metric.label}</p>
+                                    <div className="flex items-center justify-between">
+                                        <div className="text-center">
+                                            <p className="text-xs text-red-400">Before</p>
+                                            <p className="text-sm font-bold text-white">{metric.before}</p>
+                                        </div>
+                                        <div className="text-green-400 text-xs font-bold">{metric.improvement}</div>
+                                        <div className="text-center">
+                                            <p className="text-xs text-green-400">After</p>
+                                            <p className="text-sm font-bold text-white">{metric.after}</p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                );
+
+            case 'funnel':
+                return (
+                    <div>
+                        <h5 className="text-sm font-bold text-white mb-3">Conversion Funnel</h5>
+                        <div className="space-y-2">
+                            {chartData.stages.map((stage: any, idx: number) => (
+                                <motion.div
+                                    key={stage.name}
+                                    initial={{ width: 0 }}
+                                    animate={{ width: '100%' }}
+                                    transition={{ duration: 0.6, delay: idx * 0.15 }}
+                                    className="relative"
+                                >
+                                    <div
+                                        className="h-12 rounded-lg flex items-center justify-between px-4 relative overflow-hidden"
+                                        style={{
+                                            width: `${stage.value}%`,
+                                            backgroundColor: stage.color,
+                                            marginLeft: `${(100 - stage.value) / 2}%`
+                                        }}
+                                    >
+                                        <span className="text-white text-xs font-bold relative z-10">{stage.name}</span>
+                                        <span className="text-white text-xs font-bold relative z-10">{stage.value}%</span>
+                                        <motion.div
+                                            className="absolute inset-0 bg-white/10"
+                                            animate={{ x: ['-100%', '100%'] }}
+                                            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                                        />
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                        <p className="text-center text-xs text-green-400 font-bold mt-3">28% conversion rate</p>
+                    </div>
+                );
+
+            case 'instaDM':
+                return (
+                    <div>
+                        <h5 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
+                            <FaInstagram className="text-pink-400" />
+                            Live Creator Inbox
+                        </h5>
+                        <div className="bg-gradient-to-b from-gray-900 to-black rounded-2xl p-3 space-y-2">
+                            {chartData.messages.map((msg: any, idx: number) => (
+                                <motion.div
+                                    key={idx}
+                                    initial={{ opacity: 0, x: msg.from === 'creator' ? -20 : 20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: idx * 0.3 }}
+                                    className={`${msg.from === 'creator'
+                                        ? 'bg-gray-800 rounded-2xl rounded-tl-sm'
+                                        : 'bg-gradient-to-r from-pink-500 to-orange-500 rounded-2xl rounded-tr-sm ml-auto'
+                                        } p-3 max-w-[85%]`}
+                                >
+                                    <p className="text-white text-xs">{msg.text}</p>
+                                    <p className="text-gray-400 text-[10px] mt-1">{msg.time}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                        <p className="text-center text-xs text-pink-400 font-bold mt-2">400+ monthly inquiries</p>
+                    </div>
+                );
+
+            default:
+                return null;
+        }
     };
 
     return (
@@ -523,6 +812,19 @@ export default function Services() {
                                     <FaYoutube className="w-5 h-5 text-[#FF0000]" />
                                 )}
                             </div>
+
+                            {/* CHART VISUALIZATION POPUP */}
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                                whileHover={{ opacity: 1, scale: 1, y: 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="absolute inset-0 bg-black/95 backdrop-blur-2xl border border-white/20 rounded-3xl p-6 opacity-0 group-hover:opacity-100 pointer-events-none z-30"
+                                style={{ boxShadow: `0 20px 50px -12px rgba(0, 0, 0, 0.8)` }}
+                            >
+                                <div className="h-full flex flex-col justify-center">
+                                    {renderChartVisualization(service)}
+                                </div>
+                            </motion.div>
                         </motion.div>
                     ))}
                 </motion.div>
