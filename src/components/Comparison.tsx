@@ -6,35 +6,35 @@ import { FaArrowUp, FaChartLine, FaRegSadTear, FaRegSmileBeam } from "react-icon
 
 const Comparison = () => {
     return (
-        <section className="py-24 relative overflow-hidden">
-            <div className="container mx-auto px-6">
+        <section className="py-16 md:py-24 relative overflow-hidden">
+            <div className="container mx-auto px-4 md:px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="text-center mb-12 md:mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                    <h2 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6">
                         The <span className="text-neon-blue">EZY MEDIA</span> Effect
                     </h2>
-                    <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+                    <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
                         We transform your digital presence with creator-powered, data-driven campaigns.
                     </p>
                 </motion.div>
 
-                <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto">
                     {/* Before */}
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="glass-card p-8 rounded-3xl border-l-4 border-gray-600 relative overflow-hidden group"
+                        className="glass-card p-6 md:p-8 rounded-3xl border-l-4 border-gray-600 relative overflow-hidden group"
                     >
                         <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                            <FaRegSadTear className="text-9xl" />
+                            <FaRegSadTear className="text-7xl md:text-9xl" />
                         </div>
-                        <h3 className="text-2xl font-bold mb-8 text-gray-400">Before EZY MEDIA</h3>
+                        <h3 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-gray-400">Before EZY MEDIA</h3>
 
                         <div className="space-y-6">
                             <div>
@@ -84,12 +84,12 @@ const Comparison = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="glass-card p-8 rounded-3xl border-l-4 border-neon-green relative overflow-hidden group will-change-transform"
+                        className="glass-card p-6 md:p-8 rounded-3xl border-l-4 border-neon-green relative overflow-hidden group will-change-transform"
                     >
                         <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                            <FaRegSmileBeam className="text-9xl text-neon-green" />
+                            <FaRegSmileBeam className="text-7xl md:text-9xl text-neon-green" />
                         </div>
-                        <h3 className="text-2xl font-bold mb-8 text-white">After <span className="text-neon-green">EZY MEDIA</span></h3>
+                        <h3 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-white">After <span className="text-neon-green">EZY MEDIA</span></h3>
 
                         <div className="space-y-6 relative z-10">
                             <div>
