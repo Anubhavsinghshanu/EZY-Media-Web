@@ -19,108 +19,108 @@ export default function Services() {
 
     const services = [
         {
-            title: "Influencer Marketing",
-            description: "End-to-end influencer collaborations engineered for maximum reach, brand alignment, and measurable conversions.",
+            title: "Influencer Nexus",
+            description: "We don't just find creators; we deploy armies. Our network activates 400+ verified influencers instantly to flood the feed.",
             icon: <FaUsers className="w-8 h-8" />,
-            accent: "from-purple-500 to-indigo-500",
+            accent: "from-[#FF0080] via-[#FF6600] to-[#FF0080]", // Instagram Vibrant
             popup: {
                 bullets: [
-                    "400+ verified creators onboard",
-                    "Industry-best 92% fulfilment accuracy",
-                    "Niche-wise targeted campaign mapping",
-                    "Real-time performance tracking",
-                    "+120% avg engagement uplift"
+                    "⚡ 400+ Active Creator Network",
+                    "🎯 92% Audience Match Rate",
+                    "🚀 120% Engagement Uplift",
+                    "🔥 15M+ Instant Reach Capacity",
+                    "💎 Zero-Friction Campaign Mgmt"
                 ],
                 logo: "instagram",
                 animation: "up"
             }
         },
         {
-            title: "YouTube Shorts & Repost Campaigns",
-            description: "Guaranteed virality via mass-scale repost infrastructure, 100% optimized for retention, engagement, and trending velocity.",
+            title: "Viral Engineering",
+            description: "YouTube Shorts & Reels domination. We use retention-optimized editing and mass-repost strategies to force algorithms to pay attention.",
             icon: <FaYoutube className="w-8 h-8" />,
-            accent: "from-red-500 to-orange-500",
+            accent: "from-[#FF0000] via-[#FF4D4D] to-[#990000]", // YouTube Red
             popup: {
                 bullets: [
-                    "12/12 videos crossed 20M+",
-                    "3 videos hit 100M+",
-                    "Premium repost network with 400 creators",
-                    "Guaranteed trending velocity",
-                    "Optimized retention strategy"
+                    "📈 12/12 Videos Hit 20M+ Views",
+                    "🏆 3 Videos Crossed 100M+ Mark",
+                    "⚡ 70%+ Average Retention Rate",
+                    "🌊 Mass-Scale Repost Infrastructure",
+                    "🚀 Guaranteed Trending Velocity"
                 ],
                 logo: "youtube",
                 animation: "right"
             }
         },
         {
-            title: "Social Media Management",
-            description: "Complete management: content calendars, growth strategy, engagement pipeline, analytics, and performance tracking.",
+            title: "Growth Ecosystem",
+            description: "Complete social media takeover. From content calendars to community pipelines, we build systems that compound growth daily.",
             icon: <FaChartLine className="w-8 h-8" />,
-            accent: "from-blue-500 to-cyan-500",
+            accent: "from-[#00F260] via-[#0575E6] to-[#00F260]", // Growth Green/Blue
             popup: {
                 bullets: [
-                    "Monthly content calendar & posting",
-                    "Community engagement pipeline",
-                    "Data-driven growth frameworks",
-                    "Studio-quality visuals & graphics",
-                    "Weekly analytics breakdown"
+                    "📅 365-Day Strategic Calendar",
+                    "💬 24/7 Community Engagement",
+                    "📊 Real-Time Growth Analytics",
+                    "🎨 Studio-Grade Visual Identity",
+                    "🔄 Automated Lead Pipelines"
                 ],
                 logo: "instagram",
                 animation: "left"
             }
         },
         {
-            title: "Content Creation",
-            description: "Visually powerful, trend-driven content crafted to outperform algorithms.",
+            title: "Visual Alchemy",
+            description: "Content that stops the scroll. High-octane motion graphics, 3D visuals, and trend-jacking edits designed for maximum retention.",
             subServices: [
-                "Reels & Shorts Production",
-                "High-end Graphics",
-                "Motion Visuals",
-                "Trend-Engineered Video Concepts"
+                "Hyper-Visual Reels",
+                "3D Motion Graphics",
+                "Trend-Jacking Edits",
+                "Sonic Branding"
             ],
             icon: <FaVideo className="w-8 h-8" />,
-            accent: "from-pink-500 to-rose-500",
+            accent: "from-[#833ab4] via-[#fd1d1d] to-[#fcb045]", // Creative Sunset
             popup: {
                 bullets: [
-                    "Reels, Shorts, Motion Graphics",
-                    "Trend-engineered video ideas",
-                    "Fast production cycle",
-                    "Algorithm-optimized edits",
-                    "Premium color-grade + sound design"
+                    "✨ Cinema-Grade Color Grading",
+                    "🎵 Neuro-Audio Sound Design",
+                    "⚡ Sub-Second Cut Pacing",
+                    "🔥 4K/60fps Optimized Output",
+                    "🧠 Psychology-Based Hooks"
                 ],
                 logo: "both",
                 animation: "up"
             }
         },
         {
-            title: "Brand Campaign Strategy",
-            description: "Strategic multi-platform campaign architecture built to deliver measurable brand lift and customer impact.",
+            title: "Strategic Warfare",
+            description: "Campaign architecture that wins. We map user psychology to platform algorithms to create multi-touchpoint brand dominance.",
             icon: <FaChess className="w-8 h-8" />,
-            accent: "from-emerald-500 to-teal-500",
+            accent: "from-[#00c6ff] via-[#0072ff] to-[#00c6ff]", // Strategy Blue
             popup: {
                 bullets: [
-                    "Multi-platform scaling roadmap",
-                    "Target audience behaviour mapping",
-                    "Creative + distribution synergy",
-                    "High-performance CTAs",
-                    "Multi-variant testing system"
+                    "🗺️ Multi-Platform Roadmap",
+                    "🎯 Psychographic Audience Targeting",
+                    "🔄 A/B/C Variant Testing",
+                    "💰 High-ROAS Ad Frameworks",
+                    "🔗 Cross-Channel Synergy"
                 ],
                 logo: "instagram",
                 animation: "right"
             }
         },
         {
-            title: "PR & Branding",
-            description: "Digital PR, brand storytelling, perception management, and identity design for long-term brand equity.",
+            title: "Brand Legacy",
+            description: "Perception is reality. We craft high-authority digital PR and brand narratives that position you as the undisputed market leader.",
             icon: <FaBullhorn className="w-8 h-8" />,
-            accent: "from-amber-500 to-yellow-500",
+            accent: "from-[#F2994A] via-[#F2C94C] to-[#F2994A]", // Gold/Luxury
             popup: {
                 bullets: [
-                    "Storytelling + brand language setup",
-                    "Digital PR outreach & publications",
-                    "Brand identity optimization",
-                    "Market positioning framework",
-                    "Reputation management"
+                    "👑 Authority Positioning",
+                    "📰 Tier-1 Digital PR Placements",
+                    "🗣️ Crisis & Reputation Mgmt",
+                    "💎 Premium Brand Voice Setup",
+                    "🌟 Long-Term Equity Building"
                 ],
                 logo: "none",
                 animation: "left"
@@ -203,22 +203,22 @@ export default function Services() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="text-5xl md:text-7xl font-bold mb-6 tracking-tight text-white"
+                        className="text-5xl md:text-7xl font-black mb-6 tracking-tighter text-white leading-none"
+                        style={{ fontFamily: 'Montserrat, sans-serif' }}
                     >
-                        OUR HIGH-PERFORMANCE
+                        DOMINATE <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">THE ALGORITHM</span>
                         <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-blue-400 to-purple-400 animate-gradient-x">
-                            DIGITAL SERVICES
-                        </span>
+                        <span className="text-4xl md:text-6xl text-gray-500 font-bold tracking-widest opacity-50">WITH REAL-TIME PRECISION</span>
                     </motion.h2>
 
                     <motion.p
                         initial={{ opacity: 0 }}
                         animate={isInView ? { opacity: 1 } : {}}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="text-lg md:text-xl text-gray-400 font-medium tracking-wide uppercase"
+                        className="text-lg md:text-xl text-gray-300 font-medium tracking-wide max-w-3xl mx-auto"
+                        style={{ fontFamily: 'Poppins, sans-serif' }}
                     >
-                        Engineered for Growth • Optimized for Scale • Designed for Results
+                        We don't just post. We engineer <span className="text-neon-blue font-bold">viral velocity</span> using live data, creator networks, and algorithmic mastery.
                     </motion.p>
                 </div>
 
