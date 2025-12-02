@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Montserrat, Poppins, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
@@ -20,16 +20,17 @@ const playfair = Playfair_Display({
   weight: ["400", "500", "600", "700", "800", "900"],
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: "#0a0a0a",
+};
+
 export const metadata: Metadata = {
   title: "EZY MEDIA | Make It Trending",
   description: "Premium Social Media Agency. We transform your digital presence through data-driven marketing and creator collaborations.",
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: true,
-  },
-  themeColor: "#0a0a0a",
 };
 
 export default function RootLayout({
