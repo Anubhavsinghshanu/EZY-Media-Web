@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { FaInstagram, FaTiktok, FaYoutube, FaTwitter, FaTwitch } from "react-icons/fa";
+import { FaInstagram, FaFacebook, FaYoutube, FaTwitter, FaTwitch } from "react-icons/fa";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -42,7 +42,7 @@ const Counter = ({ value, suffix }: { value: number; suffix: string }) => {
 const FloatingIcons = () => {
     const icons = [
         { Icon: FaInstagram, color: "#E1306C", x: "10%", y: "20%", delay: 0 },
-        { Icon: FaTiktok, color: "#00f2ea", x: "80%", y: "15%", delay: 1 },
+        { Icon: FaFacebook, color: "#1877F2", x: "80%", y: "15%", delay: 1 },
         { Icon: FaYoutube, color: "#FF0000", x: "15%", y: "70%", delay: 2 },
         { Icon: FaTwitter, color: "#1DA1F2", x: "85%", y: "60%", delay: 3 },
         { Icon: FaTwitch, color: "#9146FF", x: "50%", y: "85%", delay: 4 },
