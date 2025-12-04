@@ -352,7 +352,7 @@ export default function MajorAchievements() {
     const [hoveredStat, setHoveredStat] = useState<string | null>(null);
 
     return (
-        <section ref={sectionRef} className="relative py-16 md:py-32 px-4 md:px-6 bg-black overflow-hidden">
+        <section ref={sectionRef} className="relative py-16 md:py-20 px-4 md:px-6 overflow-hidden">
             {/* Background Ambience */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-0 left-1/4 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-blue-900/20 rounded-full blur-[100px]" />

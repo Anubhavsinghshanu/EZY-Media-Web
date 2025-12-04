@@ -8,11 +8,12 @@ import Services from "@/components/Services";
 import SocialProof from "@/components/SocialProof"; // Added this import
 import MajorAchievements from "@/components/MajorAchievements";
 import TrustProof from "@/components/TrustProof";
+import Leadership from "@/components/Leadership";
 import SmoothScroll from "@/components/SmoothScroll";
 
 export default function Home() {
   return (
-    <main className="bg-black min-h-screen text-white selection:bg-neon-blue selection:text-black">
+    <main className="min-h-screen text-white selection:bg-neon-blue selection:text-black">
       <SmoothScroll />
       <Navbar />
       <Hero />
@@ -24,6 +25,7 @@ export default function Home() {
       <SocialProof /> {/* Added this component */}
       <MajorAchievements />
       <TrustProof />
+      <Leadership />
 
       {/* Footer Placeholder */}
       <footer className="py-12 border-t border-white/10 mt-20">

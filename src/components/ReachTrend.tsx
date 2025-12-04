@@ -62,7 +62,7 @@ const ReachTrend = () => {
     if (!mounted) return null;
 
     return (
-        <section className="py-24 bg-black relative overflow-hidden">
+        <section className="py-20 relative overflow-hidden">
             {/* Floating Particles */}
             <div className="absolute inset-0 pointer-events-none">
                 {[...Array(15)].map((_, i) => (
@@ -264,8 +264,8 @@ const ReachTrend = () => {
                         `}>
                                         <div className="flex items-center gap-2 mb-2">
                                             <span className={`text-lg ${hoveredCampaign.platform === "instagram" ? "text-[#00f3ff]" :
-                                                    hoveredCampaign.platform === "youtube" ? "text-[#FF0000]" :
-                                                        "text-[#1877F2]"
+                                                hoveredCampaign.platform === "youtube" ? "text-[#FF0000]" :
+                                                    "text-[#1877F2]"
                                                 }`}>
                                                 {getIcon(hoveredCampaign.type)}
                                             </span>

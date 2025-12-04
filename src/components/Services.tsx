@@ -74,7 +74,7 @@ export default function Services() {
     return (
         <section
             ref={sectionRef}
-            className="relative py-32 px-6 overflow-hidden bg-[#050505]"
+            className="relative py-20 px-6 overflow-hidden"
         >
             {/* Background Ambient Glows */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">

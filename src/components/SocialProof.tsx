@@ -176,10 +176,10 @@ export default function SocialProof() {
     return (
         <section
             ref={sectionRef}
-            className="relative bg-[#000000] overflow-hidden"
+            className="relative overflow-hidden"
         >
             {/* --- SECTION 1: CLIENT LOVE ENGINE --- */}
-            <div className="relative py-32 px-6 bg-gradient-to-b from-black to-[#0A0A12]">
+            <div className="relative py-20 px-6">
 
                 {/* Golden Sparks / Particles */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -243,7 +243,7 @@ export default function SocialProof() {
             </div>
 
             {/* --- SECTION 2: INFLUENCER PERFORMANCE ANALYTICS SUITE --- */}
-            <div className="relative py-32 px-6 bg-[#050507] border-t border-white/5">
+            <div className="relative py-20 px-6 border-t border-white/5">
                 <div className="max-w-[1400px] mx-auto">
 
                     {/* Heading */}
