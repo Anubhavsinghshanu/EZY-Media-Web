@@ -10,6 +10,7 @@ import MajorAchievements from "@/components/MajorAchievements";
 import TrustProof from "@/components/TrustProof";
 import Leadership from "@/components/Leadership";
 import SmoothScroll from "@/components/SmoothScroll";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -21,18 +22,21 @@ export default function Home() {
       <PlatformStats />
       <ReachTrend />
       <DistributionCharts />
-      <Services />
-      <SocialProof /> {/* Added this component */}
-      <MajorAchievements />
+      <section id="services">
+        <Services />
+      </section>
+      <section id="creators">
+        <SocialProof />
+      </section>
+      <section id="case-studies">
+        <MajorAchievements />
+      </section>
       <TrustProof />
-      <Leadership />
+      <section id="about">
+        <Leadership />
+      </section>
 
-      {/* Footer Placeholder */}
-      <footer className="py-12 border-t border-white/10 mt-20">
-        <div className="container mx-auto px-6 text-center text-gray-500">
-          <p>&copy; {new Date().getFullYear()} EZY MEDIA. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }

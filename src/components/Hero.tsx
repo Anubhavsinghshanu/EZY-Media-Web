@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaInstagram, FaFacebook, FaYoutube, FaTwitter, FaTwitch } from "react-icons/fa";
@@ -116,9 +117,12 @@ const Hero = () => {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
                 >
-                    <button className="px-8 py-4 bg-transparent border-2 border-neon-blue text-neon-blue font-bold text-lg rounded-full hover:bg-neon-blue hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(0,243,255,0.3)] hover:shadow-[0_0_40px_rgba(0,243,255,0.6)]">
+                    <Link
+                        href="/start-campaign"
+                        className="inline-block px-8 py-4 bg-transparent border-2 border-neon-blue text-neon-blue font-bold text-lg rounded-full hover:bg-neon-blue hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(0,243,255,0.3)] hover:shadow-[0_0_40px_rgba(0,243,255,0.6)]"
+                    >
                         Start Your Campaign
-                    </button>
+                    </Link>
                 </motion.div>
             </div>
 
