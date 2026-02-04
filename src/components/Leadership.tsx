@@ -21,10 +21,10 @@ const LEADERS = [
     },
     {
         name: "Vishal Singh",
-        role: "Managing Partner",
+        role: "Strategic Partner",
         meta: "21 Years · Lucknow",
-        initials: "VS",
-        type: "initials",
+        image: "/assets/partner_vishal.jpg",
+        type: "image",
         borderColor: "border-purple-500/50",
         shadowColor: "shadow-[0_0_40px_-10px_rgba(168,85,247,0.2)]",
         points: [
@@ -60,17 +60,13 @@ export default function Leadership() {
                             {/* Profile Visual */}
                             <div className="mb-6 shrink-0 relative">
                                 <div className="w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden shadow-2xl border-2 border-white/5 relative bg-gradient-to-br from-gray-800 to-black flex items-center justify-center">
-                                    {leader.type === 'image' ? (
-                                        <Image
-                                            src={leader.image || ''}
-                                            alt={leader.name}
-                                            width={144}
-                                            height={144}
-                                            className="w-full h-full object-cover filter contrast-[1.05]"
-                                        />
-                                    ) : (
-                                        <span className="text-3xl font-bold text-gray-500">{leader.initials}</span>
-                                    )}
+                                    <Image
+                                        src={leader.image || ''}
+                                        alt={leader.name}
+                                        width={144}
+                                        height={144}
+                                        className="w-full h-full object-cover filter contrast-[1.05]"
+                                    />
                                 </div>
                             </div>
 
