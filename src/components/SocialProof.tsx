@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
 import { FaInstagram, FaYoutube, FaStar, FaQuoteRight } from 'react-icons/fa6';
 
@@ -102,7 +102,6 @@ const TESTIMONIALS = [
 
 export default function SocialProof() {
     const sectionRef = useRef<HTMLElement>(null);
-    const isInView = useInView(sectionRef, { once: true, margin: "-50px" });
     const [highlightIndex, setHighlightIndex] = useState(-1);
 
     // Auto-highlight effect
@@ -127,9 +126,9 @@ export default function SocialProof() {
                     <motion.h2
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-5 font-[family-name:var(--font-poppins)] leading-tight"
+                        className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-5 font-[family-name:var(--font-poppins)] leading-tight"
                     >
-                        Trusted by <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-300 to-yellow-500">Creators & Founders</span> <br /> Across India
+                        Trusted by <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-300 to-yellow-500">Creators & Founders</span> <br className="hidden sm:block" /> Across India
                     </motion.h2>
 
                     <p className="text-gray-400 text-sm md:text-base font-medium max-w-2xl mx-auto">

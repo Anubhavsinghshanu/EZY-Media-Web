@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { FaUsers, FaGlobe, FaAward, FaEye } from "react-icons/fa";
+import Image from "next/image";
 
 const STATS = [
     { label: "Active Creators", value: "3000+", icon: FaUsers },
@@ -24,7 +25,7 @@ export default function AboutPage() {
                         animate={{ opacity: 1, y: 0 }}
                         className="text-center mb-24"
                     >
-                        <h1 className="text-5xl md:text-8xl font-black mb-6 tracking-tighter uppercase whitespace-nowrap">
+                        <h1 className="text-4xl md:text-8xl font-black mb-6 tracking-tighter uppercase">
                             Who is <span className="text-cyan-400">EZY MEDIA?</span>
                         </h1>
                         <p className="text-gray-400 text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
@@ -58,7 +59,7 @@ export default function AboutPage() {
                         >
                             <h2 className="text-4xl md:text-6xl font-black mb-8 italic uppercase tracking-tighter">Our Vision</h2>
                             <p className="text-gray-400 text-lg leading-relaxed mb-6">
-                                In a world drowned in noise, we help you sing. EZY Media was founded on a simple principle: ROI-driven creativity. We don't just chase likes; we chase impact.
+                                In a world drowned in noise, we help you sing. EZY Media was founded on a simple principle: ROI-driven creativity. We don&apos;t just chase likes; we chase impact.
                             </p>
                             <p className="text-gray-400 text-lg leading-relaxed">
                                 Our network of creators spans across Entertainment, Gaming, Finance, and Lifestyle, ensuring that no matter your niche, we have the voice to tell your story.
@@ -69,9 +70,11 @@ export default function AboutPage() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             className="aspect-square relative rounded-[3rem] overflow-hidden border border-white/10"
                         >
-                            <img
+                            <Image
                                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=800&fit=crop"
                                 alt="Team Ezy Media"
+                                width={800}
+                                height={800}
                                 className="w-full h-full object-cover grayscale"
                             />
                             <div className="absolute inset-0 bg-cyan-400/10 mix-blend-overlay" />

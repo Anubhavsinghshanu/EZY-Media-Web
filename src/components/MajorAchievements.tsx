@@ -1,61 +1,15 @@
 'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, useSpring, useMotionValue, useInView, AnimatePresence, Variants } from 'framer-motion';
+import React, { useRef, useState } from 'react';
+import { motion, useTransform, useSpring, useMotionValue, useInView, AnimatePresence, Variants } from 'framer-motion';
 
 // --- Assets & Data ---
 
-const LOGOS = [
-    "Winadda", "Fun88", "Betway", "1xBet", "Parimatch", "Fairplay", "Lotus365", "Mahadev", "Reddy Anna"
-];
 
-const CREATORS = [
-    { id: 0, name: "Creator 1", followers: "4.2M", color: "hsl(320, 70%, 60%)" },
-    { id: 1, name: "Creator 2", followers: "2.8M", color: "hsl(180, 70%, 60%)" },
-    { id: 2, name: "Creator 3", followers: "5.1M", color: "hsl(240, 70%, 60%)" },
-    { id: 3, name: "Creator 4", followers: "1.9M", color: "hsl(40, 70%, 60%)" },
-    { id: 4, name: "Creator 5", followers: "3.5M", color: "hsl(280, 70%, 60%)" },
-    { id: 5, name: "Creator 6", followers: "6.0M", color: "hsl(10, 70%, 60%)" },
-    { id: 6, name: "Creator 7", followers: "2.2M", color: "hsl(200, 70%, 60%)" },
-    { id: 7, name: "Creator 8", followers: "4.8M", color: "hsl(150, 70%, 60%)" },
-    { id: 8, name: "Creator 9", followers: "3.1M", color: "hsl(300, 70%, 60%)" },
-    { id: 9, name: "Creator 10", followers: "5.5M", color: "hsl(50, 70%, 60%)" },
-    { id: 10, name: "Creator 11", followers: "1.5M", color: "hsl(220, 70%, 60%)" },
-    { id: 11, name: "Creator 12", followers: "3.9M", color: "hsl(340, 70%, 60%)" }
-];
 
 // --- Components ---
 
-const Counter = ({ from, to, duration = 2, suffix = "" }: { from: number; to: number; duration?: number; suffix?: string }) => {
-    const nodeRef = useRef<HTMLSpanElement>(null);
-    const inView = useInView(nodeRef, { once: true });
 
-    useEffect(() => {
-        if (!inView) return;
-
-        const node = nodeRef.current;
-        const controls = { value: from };
-
-        let startTime: number;
-
-        const animate = (time: number) => {
-            if (!startTime) startTime = time;
-            const progress = Math.min((time - startTime) / (duration * 1000), 1);
-            const ease = 1 - Math.pow(1 - progress, 3); // Cubic out
-
-            const current = Math.floor(controls.value + (to - from) * ease);
-            if (node) node.textContent = `${current}${suffix}`;
-
-            if (progress < 1) {
-                requestAnimationFrame(animate);
-            }
-        };
-
-        requestAnimationFrame(animate);
-    }, [from, to, duration, inView, suffix]);
-
-    return <span ref={nodeRef} />;
-};
 
 // Data removed as per request
 
@@ -366,7 +320,7 @@ export default function MajorAchievements() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8 }}
-                        className="text-3xl md:text-5xl lg:text-7xl font-extrabold text-white mb-4 tracking-tight"
+                        className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold text-white mb-4 tracking-tight"
                         style={{ fontFamily: 'Montserrat, sans-serif' }}
                     >
                         Major Achievements
@@ -388,7 +342,7 @@ export default function MajorAchievements() {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
 
                     {/* CARD 1: INSTAGRAM SERVICES - ULTRA PREMIUM REDESIGN */}
-                    <Card3D glowColor="from-pink-600/30 via-purple-600/30 to-orange-600/30" className="border-pink-500/20 hover:border-pink-400/50 transition-all duration-500 ease-out group/card h-[600px]">
+                    <Card3D glowColor="from-pink-600/30 via-purple-600/30 to-orange-600/30" className="border-pink-500/20 hover:border-pink-400/50 transition-all duration-500 ease-out group/card h-auto min-h-[550px] lg:h-[600px]">
                         <div className="absolute inset-0 bg-black/40 backdrop-blur-3xl z-0" />
 
                         <div className="p-4 md:p-8 flex-1 flex flex-col relative overflow-hidden z-10 h-full">
@@ -636,7 +590,7 @@ export default function MajorAchievements() {
                     </Card3D>
 
                     {/* CARD 3: REPOST CAMPAIGN MASTERY */}
-                    <Card3D glowColor="from-blue-600/30 via-purple-600/30 to-pink-600/30" className="h-[600px] relative overflow-hidden group/repost">
+                    <Card3D glowColor="from-blue-600/30 via-purple-600/30 to-pink-600/30" className="h-auto min-h-[550px] lg:h-[600px] relative overflow-hidden group/repost">
                         {/* Background - Obsidian Black with Parallax */}
                         <div className="absolute inset-0 bg-[#0A0A0A] z-0" />
                         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/10 to-pink-900/10 z-0" />

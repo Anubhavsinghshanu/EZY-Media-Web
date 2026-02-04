@@ -21,8 +21,19 @@ const ReachTrend = () => {
     const [hoveredCampaign, setHoveredCampaign] = useState<Campaign | null>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
+    const [particles, setParticles] = useState<Array<{ id: number; left: string; top: string; duration: number }>>([]);
+
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setMounted(true);
+        // Generate particles only once on mount to avoid "impure" render issues
+        const newParticles = [...Array(15)].map((_, i) => ({
+            id: i,
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            duration: 5 + Math.random() * 5,
+        }));
+        setParticles(newParticles);
     }, []);
 
     // SVG Paths
@@ -65,20 +76,20 @@ const ReachTrend = () => {
         <section className="py-20 relative overflow-hidden">
             {/* Floating Particles */}
             <div className="absolute inset-0 pointer-events-none">
-                {[...Array(15)].map((_, i) => (
+                {particles.map((p) => (
                     <motion.div
-                        key={i}
+                        key={p.id}
                         className="absolute w-1 h-1 bg-white/20 rounded-full"
                         style={{
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
+                            left: p.left,
+                            top: p.top,
                         }}
                         animate={{
                             y: [0, -100],
                             opacity: [0, 1, 0],
                         }}
                         transition={{
-                            duration: 5 + Math.random() * 5,
+                            duration: p.duration,
                             repeat: Infinity,
                             ease: "linear",
                         }}

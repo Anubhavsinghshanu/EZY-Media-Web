@@ -37,7 +37,7 @@ const Counter = ({ value, suffix }: { value: number; suffix: string }) => {
         }
     }, [isInView, value, suffix]);
 
-    return <span ref={ref} className="text-4xl md:text-5xl font-bold text-neon-blue block mb-2">0{suffix}</span>;
+    return <span ref={ref} className="text-3xl md:text-5xl font-bold text-neon-blue block mb-2">0{suffix}</span>;
 };
 
 const FloatingIcons = () => {
@@ -95,10 +95,10 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 leading-tight"
+                    className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 leading-[1.1]"
                 >
-                    WELCOME <span className="ml-3">TO</span> <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple">
+                    WELCOME <span className="ml-3 sm:inline block sm:mt-0 -mt-2">TO</span> <br className="hidden sm:block" />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple block sm:inline mt-2 sm:mt-0">
                         EZY MEDIA
                     </span>
                 </motion.h1>

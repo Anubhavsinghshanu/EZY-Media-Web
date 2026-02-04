@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { FaChevronDown, FaWhatsapp, FaEnvelope, FaCalendarAlt, FaCheck, FaArrowRight } from "react-icons/fa";
@@ -111,54 +111,75 @@ export default function Navbar() {
                             onClick={() => setModalOpen(true)}
                             className="hidden md:block px-6 py-2.5 bg-white text-black font-bold text-xs uppercase tracking-wider rounded-lg hover:bg-gray-200 transition-colors"
                         >
-                            Let's Talk
+                            Let&apos;s Talk
                         </button>
 
                         {/* Mobile Toggle */}
                         <button
                             className="md:hidden z-50 relative w-10 h-10 flex flex-col justify-center items-center focus:outline-none"
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            aria-label="Toggle Menu"
                         >
-                            <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ease-out ${mobileMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-1'}`} />
-                            <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ease-out my-0.5 ${mobileMenuOpen ? 'opacity-0' : 'opacity-100'}`} />
-                            <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ease-out ${mobileMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-1'}`} />
+                            <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ease-out ${mobileMenuOpen ? 'rotate-45 translate-y-1.5' : '-translate-y-1'}`} />
+                            <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ease-out my-1 ${mobileMenuOpen ? 'opacity-0' : 'opacity-100'}`} />
+                            <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ease-out ${mobileMenuOpen ? '-rotate-45 -translate-y-1.5' : 'translate-y-1'}`} />
                         </button>
                     </div>
                 </div>
+            </motion.nav>
 
-                {/* Mobile Menu Overlay */}
-                <AnimatePresence>
-                    {mobileMenuOpen && (
-                        <motion.div
-                            initial={{ opacity: 0, x: "100%" }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: "100%" }}
-                            transition={{ duration: 0.3, ease: "easeInOut" }}
-                            className="fixed inset-0 bg-[#0A0A0A] z-40 flex flex-col pt-24 px-8 md:hidden overflow-y-auto"
-                        >
-                            <div className="flex flex-col space-y-6">
-                                {NAV_ITEMS.map((item) => (
+            {/* Mobile Menu Overlay - Moved outside motion.nav to fix transform clipping */}
+            <AnimatePresence>
+                {mobileMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, scale: 1.1 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 1.1 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        className="fixed inset-0 bg-[#0A0A0A] z-[45] flex flex-col pt-32 pb-10 px-8 md:hidden overflow-y-auto"
+                    >
+                        <div className="flex flex-col space-y-6">
+                            {NAV_ITEMS.map((item, idx) => (
+                                <motion.div
+                                    key={item.href}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: idx * 0.05 }}
+                                >
                                     <Link
-                                        key={item.href}
                                         href={item.href}
                                         onClick={() => setMobileMenuOpen(false)}
-                                        className="border-b border-white/5 pb-4"
+                                        className="border-b border-white/5 pb-4 block"
                                     >
-                                        <div className="text-xl font-bold text-white mb-1">{item.label}</div>
-                                        <div className="text-xs text-gray-500">Go to {item.label}</div>
+                                        <div className="text-2xl font-bold text-white mb-1 uppercase tracking-tighter">{item.label}</div>
+                                        <div className="text-[10px] text-gray-500 uppercase tracking-widest font-medium">Explore Our {item.label}</div>
                                     </Link>
-                                ))}
+                                </motion.div>
+                            ))}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.3 }}
+                            >
                                 <button
                                     onClick={() => { setModalOpen(true); setMobileMenuOpen(false); }}
-                                    className="w-full py-4 bg-white text-black font-bold uppercase tracking-wider rounded-lg mt-8"
+                                    className="w-full py-5 bg-white text-black font-black uppercase tracking-widest rounded-2xl mt-8 shadow-[0_0_30px_rgba(255,255,255,0.1)] active:scale-95 transition-all text-sm"
                                 >
-                                    Let's Talk
+                                    Let&apos;s Talk
                                 </button>
+                            </motion.div>
+                        </div>
+
+                        {/* Mobile Footer Info */}
+                        <div className="mt-auto pt-10 border-t border-white/5">
+                            <div className="flex justify-between items-center text-[10px] text-gray-500 font-bold uppercase tracking-widest">
+                                <span>Based in India</span>
+                                <span>Working Globally</span>
                             </div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </motion.nav>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             {/* Modal */}
             <AnimatePresence>
@@ -179,8 +200,8 @@ export default function Navbar() {
                         >
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 to-blue-500" />
 
-                            <h3 className="text-2xl font-bold text-white mb-2">Let's Connect</h3>
-                            <p className="text-gray-400 text-sm mb-6">Choose how you'd like to reach us.</p>
+                            <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Let&apos;s Connect</h3>
+                            <p className="text-gray-400 text-sm mb-6">Choose how you&apos;d like to reach us.</p>
 
                             <div className="space-y-3 mb-6">
                                 <Link

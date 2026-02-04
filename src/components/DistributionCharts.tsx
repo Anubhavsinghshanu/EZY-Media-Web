@@ -1,14 +1,24 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Sector, Tooltip as RechartsTooltip } from "recharts";
 import { motion, useInView } from "framer-motion";
 import { FaInstagram, FaFacebookF, FaYoutube, FaFutbol, FaPray, FaTv, FaStar, FaGlobe, FaMapMarkerAlt } from "react-icons/fa";
 
 // --- Data & Config ---
 
+interface ChartDataItem {
+    name: string;
+    value: number;
+    color: string;
+    legendColor: string;
+    desc: string;
+    icon?: React.ReactElement;
+    [key: string]: string | number | boolean | React.ReactElement | undefined;
+}
+
 // Chart 1: Platform Split
-const platformData = [
+const platformData: ChartDataItem[] = [
     {
         name: "Instagram",
         value: 65,
@@ -36,7 +46,7 @@ const platformData = [
 ];
 
 // Chart 2: Audience Split
-const audienceData = [
+const audienceData: ChartDataItem[] = [
     {
         name: "Indian Pages",
         value: 80,
@@ -56,7 +66,7 @@ const audienceData = [
 ];
 
 // Chart 3: Indian Content Split
-const contentData = [
+const contentData: ChartDataItem[] = [
     {
         name: "Sports Pages",
         value: 35,
@@ -93,9 +103,17 @@ const contentData = [
 
 // --- Components ---
 
+interface ActiveShapeProps {
+    cx: number;
+    cy: number;
+    innerRadius: number;
+    outerRadius: number;
+    startAngle: number;
+    endAngle: number;
+    fill: string;
+}
 
-
-const renderActiveShape = (props: any) => {
+const renderActiveShape = (props: ActiveShapeProps) => {
     const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill } = props;
 
     return (
@@ -110,26 +128,24 @@ const renderActiveShape = (props: any) => {
                 fill={fill}
                 className="drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] transition-all duration-500"
             />
-            <motion.g
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-            >
-                {/* Bold Dot on Slice */}
-                {/* <circle cx={cx} cy={cy} r={4} fill={fill} stroke="#fff" strokeWidth={2} className="drop-shadow-md" /> */}
-            </motion.g>
         </g>
     );
 };
 
-const CustomTooltip = ({ active, payload }: any) => {
+interface CustomTooltipProps {
+    active?: boolean;
+    payload?: Array<{
+        payload: ChartDataItem;
+    }>;
+}
+
+const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
     if (active && payload && payload.length) {
         const data = payload[0].payload;
 
         // Determine icon style based on platform
         const getIconStyle = (name: string) => {
-            if (name === "Instagram") return "text-pink-500"; // Fallback if gradient doesn't work on icon directly
+            if (name === "Instagram") return "text-pink-500";
             if (name === "YouTube") return "text-red-600";
             if (name === "Facebook") return "text-blue-600";
             return "text-white";
@@ -158,7 +174,8 @@ const CustomTooltip = ({ active, payload }: any) => {
                                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" fill="url(#instaIconGradTooltip)" />
                             </svg>
                         ) : (
-                            data.icon ? React.cloneElement(data.icon, { style: { color: data.legendColor } }) : <div className="w-3 h-3 rounded-full" style={{ backgroundColor: data.legendColor }} />
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            data.icon ? React.cloneElement(data.icon as React.ReactElement<any>, { style: { color: data.legendColor } }) : <div className="w-3 h-3 rounded-full" style={{ backgroundColor: data.legendColor }} />
                         )}
                     </div>
                     <p
@@ -188,23 +205,20 @@ const CustomTooltip = ({ active, payload }: any) => {
     return null;
 };
 
+interface PieChartCardProps {
+    title: string;
+    data: ChartDataItem[];
+    bgType: string;
+    centerContent?: React.ReactNode;
+}
 
-
-const PieChartCard = ({ title, data, bgType, centerContent }: any) => {
+const PieChartCard = ({ title, data, centerContent }: PieChartCardProps) => {
     const [activeIndex, setActiveIndex] = useState<number | undefined>(undefined);
     const [hoveredLegend, setHoveredLegend] = useState<number | undefined>(undefined);
-    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-    const ref = React.useRef(null);
+    const ref = useRef(null);
     const isInView = useInView(ref, { once: true, amount: 0.3 });
 
-    const handleMouseMove = (e: React.MouseEvent) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        setMousePos({ x, y });
-    };
-
-    const onPieEnter = (_: any, index: number) => {
+    const onPieEnter = (_: unknown, index: number) => {
         setActiveIndex(index);
     };
 
@@ -225,12 +239,12 @@ const PieChartCard = ({ title, data, bgType, centerContent }: any) => {
     // Determine the glow color based on the active index
     const activeItem = activeIndex !== undefined ? data[activeIndex] : (hoveredLegend !== undefined ? data[hoveredLegend] : null);
 
-    const getGlowColor = (item: any) => {
+    const getGlowColor = (item: ChartDataItem | null) => {
         if (!item) return "transparent";
         if (item.name === "Instagram") return "linear-gradient(135deg, #833AB4, #FD1D1D, #FCAF45)";
         if (item.name === "YouTube") return "#FF0000";
         if (item.name === "Facebook") return "#1877F2";
-        return item.legendColor || item.color;
+        return (item.legendColor as string) || (item.color as string);
     };
 
     const glowBackground = getGlowColor(activeItem);
@@ -241,7 +255,6 @@ const PieChartCard = ({ title, data, bgType, centerContent }: any) => {
             initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
             animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            onMouseMove={handleMouseMove}
             className="glass-card p-8 rounded-3xl border border-white/10 bg-black/30 backdrop-blur-xl hover:border-white/20 hover:shadow-[0_0_40px_rgba(255,255,255,0.1)] transition-all duration-700 relative overflow-hidden group"
         >
             <h3 className="text-lg font-bold mb-6 text-center text-gray-200 group-hover:text-white transition-colors relative z-20">
@@ -300,8 +313,9 @@ const PieChartCard = ({ title, data, bgType, centerContent }: any) => {
                             <Pie
                                 {...{
                                     activeIndex: activeIndex !== undefined ? activeIndex : hoveredLegend,
-                                    activeShape: renderActiveShape,
-                                    data,
+                                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                    activeShape: renderActiveShape as any,
+                                    data: data,
                                     cx: "50%",
                                     cy: "50%",
                                     innerRadius: 70,
@@ -314,9 +328,10 @@ const PieChartCard = ({ title, data, bgType, centerContent }: any) => {
                                     animationDuration: 1800,
                                     animationEasing: "ease-out",
                                     stroke: "none",
+                                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                 } as any}
                             >
-                                {data.map((entry: any, index: number) => (
+                                {data.map((entry: ChartDataItem, index: number) => (
                                     <Cell
                                         key={`cell-${index}`}
                                         fill={entry.color}
@@ -346,7 +361,7 @@ const PieChartCard = ({ title, data, bgType, centerContent }: any) => {
 
             {/* Motion-based Legend */}
             <div className="mt-8 flex flex-wrap justify-center gap-4 px-4 relative z-20">
-                {data.map((entry: any, index: number) => (
+                {data.map((entry: ChartDataItem, index: number) => (
                     <motion.div
                         key={index}
                         className="flex items-center gap-2 text-xs text-gray-400 cursor-pointer group/legend"
@@ -379,6 +394,7 @@ const DistributionCharts = () => {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setMounted(true);
     }, []);
 

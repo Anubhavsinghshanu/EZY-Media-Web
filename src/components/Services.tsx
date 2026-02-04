@@ -14,7 +14,6 @@ import {
 export default function Services() {
     const sectionRef = useRef<HTMLElement>(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
-    const [showProofPopup, setShowProofPopup] = useState(false);
 
     // Individual hover states for each stat box
     const [hoveredStatBox, setHoveredStatBox] = useState<string | null>(null);
@@ -92,12 +91,12 @@ export default function Services() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="text-5xl md:text-7xl font-black mb-6 tracking-tighter text-white leading-none cursor-pointer relative group"
+                        className="text-3xl sm:text-5xl md:text-7xl font-black mb-6 tracking-tighter text-white leading-[1.1] cursor-pointer relative group"
                         style={{ fontFamily: 'Montserrat, sans-serif' }}
                     >
                         DOMINATE <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 group-hover:from-pink-500 group-hover:via-purple-500 group-hover:to-blue-500 transition-all duration-500">THE ALGORITHM</span>
                         <br />
-                        <span className="text-4xl md:text-6xl text-gray-500 font-bold tracking-widest opacity-50">WITH REAL-TIME PRECISION</span>
+                        <span className="text-2xl sm:text-4xl md:text-6xl text-gray-500 font-bold tracking-widest opacity-50 block mt-2">WITH REAL-TIME PRECISION</span>
                     </motion.h2>
 
                     <motion.p
@@ -107,7 +106,7 @@ export default function Services() {
                         className="text-lg md:text-xl text-gray-300 font-medium tracking-wide max-w-3xl mx-auto"
                         style={{ fontFamily: 'Poppins, sans-serif' }}
                     >
-                        We don't just post. We engineer <span className="text-neon-blue font-bold">viral velocity</span> using live data, creator networks, and algorithmic mastery.
+                        We don&apos;t just post. We engineer <span className="text-neon-blue font-bold">viral velocity</span> using live data, creator networks, and algorithmic mastery.
                     </motion.p>
 
                     {/* PROOF POPUP - Multi-Panel Data Visualization */}
@@ -232,7 +231,7 @@ export default function Services() {
                                 >
                                     <h4 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                                         <FaInstagram className="text-pink-400" />
-                                        Creator's First Choice
+                                        Creator&apos;s First Choice
                                     </h4>
                                     <div className="bg-black rounded-3xl p-4 border-4 border-gray-800 shadow-xl">
                                         {/* Instagram DM Interface */}
@@ -261,7 +260,7 @@ export default function Services() {
                                                 transition={{ delay: 0.5 }}
                                                 className="bg-gray-800 rounded-2xl rounded-tl-sm p-3 max-w-[85%]"
                                             >
-                                                <p className="text-white text-xs">Can EZY Media help? Everyone says you're the best! 🔥</p>
+                                                <p className="text-white text-xs">Can EZY Media help? Everyone says you&apos;re the best! 🔥</p>
                                             </motion.div>
 
                                             <motion.div
@@ -270,7 +269,7 @@ export default function Services() {
                                                 transition={{ delay: 0.7 }}
                                                 className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl rounded-tr-sm p-3 max-w-[85%] ml-auto"
                                             >
-                                                <p className="text-white text-xs font-medium">Absolutely! Let's make it viral 🚀</p>
+                                                <p className="text-white text-xs font-medium">Absolutely! Let&apos;s make it viral 🚀</p>
                                             </motion.div>
                                         </div>
                                     </div>
@@ -343,7 +342,7 @@ export default function Services() {
                                             <FaStar key={i} className="text-yellow-400 w-3 h-3" />
                                         ))}
                                     </div>
-                                    <p className="text-white text-sm italic mb-2">"{proofData.testimonials[0].text}"</p>
+                                    <p className="text-white text-sm italic mb-2">&quot;{proofData.testimonials[0].text}&quot;</p>
                                     <p className="text-gray-400 text-xs">— {proofData.testimonials[0].name}, <span className="text-green-400">{proofData.testimonials[0].role}</span></p>
                                 </div>
                             </div>

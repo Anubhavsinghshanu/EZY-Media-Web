@@ -23,7 +23,7 @@ export default function StartCampaignPage() {
                             START YOUR <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">CAMPAIGN</span>
                         </h1>
                         <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                            Tell us about your brand and goals. We'll craft the perfect strategy for you.
+                            Tell us about your brand and goals. We&apos;ll craft the perfect strategy for you.
                         </p>
                     </div>
 

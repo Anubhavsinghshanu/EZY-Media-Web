@@ -29,7 +29,7 @@ export default function BookPage() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.2 }}
-                        className="bg-[#0F0F0F] border border-white/10 rounded-[2.5rem] overflow-hidden min-h-[700px] shadow-2xl relative"
+                        className="bg-[#0F0F0F] border border-white/10 rounded-[2.5rem] overflow-hidden min-h-[500px] md:min-h-[700px] shadow-2xl relative"
                     >
                         {/* Custom Loading State for iframe */}
                         <div className="absolute inset-0 flex items-center justify-center z-0">
@@ -42,7 +42,7 @@ export default function BookPage() {
                         <div className="relative z-10 w-full h-full">
                             <InlineWidget
                                 url="https://calendly.com/ezymedia/30min"
-                                styles={{ height: "700px" }}
+                                styles={{ height: "600px" }}
                                 prefill={{
                                     name: "",
                                     email: "",

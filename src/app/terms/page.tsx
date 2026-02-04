@@ -20,7 +20,7 @@ export default function TermsPage() {
                     <div className="space-y-8 text-gray-400 leading-relaxed text-lg">
                         <section>
                             <h2 className="text-white font-bold text-2xl mb-4 uppercase">1. Acceptance of Terms</h2>
-                            <p>By accessing or using EZY Media's services, you agree to be bound by these Terms of Service. If you do not agree to all of these terms, do not use our services.</p>
+                            <p>By accessing or using EZY Media&apos;s services, you agree to be bound by these Terms of Service. If you do not agree to all of these terms, do not use our services.</p>
                         </section>
                         <section>
                             <h2 className="text-white font-bold text-2xl mb-4 uppercase">2. Services Description</h2>

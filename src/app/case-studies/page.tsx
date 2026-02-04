@@ -3,7 +3,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
-import { FaChartBar, FaArrowRight, FaTrophy } from "react-icons/fa";
+import { FaArrowRight, FaTrophy } from "react-icons/fa";
 
 const CASE_STUDIES = [
     {
@@ -52,7 +52,7 @@ export default function CaseStudiesPage() {
                         animate={{ opacity: 1, y: 0 }}
                         className="text-center mb-20"
                     >
-                        <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tighter uppercase text-white">
+                        <h1 className="text-4xl md:text-7xl font-black mb-6 tracking-tighter uppercase text-white">
                             Case <span className="text-cyan-400">Studies</span>
                         </h1>
                         <p className="text-gray-400 text-xl max-w-2xl mx-auto font-medium">
@@ -81,7 +81,7 @@ export default function CaseStudiesPage() {
                                         ))}
                                     </div>
 
-                                    <h3 className="text-5xl font-black italic mb-2 tracking-tighter group-hover:text-cyan-400 transition-colors uppercase">{study.brand}</h3>
+                                    <h3 className="text-3xl md:text-5xl font-black italic mb-2 tracking-tighter group-hover:text-cyan-400 transition-colors uppercase">{study.brand}</h3>
                                     <p className="text-gray-400 mb-10 text-lg leading-relaxed max-w-md">
                                         {study.description}
                                     </p>

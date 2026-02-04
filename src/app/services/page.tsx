@@ -49,7 +49,7 @@ export default function ServicesPage() {
                         animate={{ opacity: 1, y: 0 }}
                         className="mb-20"
                     >
-                        <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tighter uppercase">
+                        <h1 className="text-4xl md:text-7xl font-black mb-6 tracking-tighter uppercase">
                             Our <span className="text-cyan-400">Services</span>
                         </h1>
                         <p className="text-gray-400 text-xl max-w-2xl mx-auto">

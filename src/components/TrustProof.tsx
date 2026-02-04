@@ -12,6 +12,16 @@ export default function TrustProof() {
     const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
     const [selectedChat, setSelectedChat] = useState<number | null>(null);
 
+    interface Message {
+        from: string;
+        text?: string;
+        time: string;
+        type?: string;
+        fileName?: string;
+        platform?: string;
+        amount?: string;
+    }
+
     // WhatsApp & Instagram Chat Data
     const chats = [
         {
@@ -330,7 +340,7 @@ export default function TrustProof() {
 
                                         {/* Chat Messages (Compact View) */}
                                         <div className="p-5 space-y-4 h-[340px] overflow-hidden relative bg-[#0A0A0A]">
-                                            {chat.messages.slice(0, 4).map((msg: any, idx) => {
+                                            {chat.messages.slice(0, 4).map((msg: Message, idx) => {
                                                 // Render file attachment
                                                 if (msg.type === 'file') {
                                                     return (
@@ -530,7 +540,7 @@ export default function TrustProof() {
 
                                         {/* Full Messages */}
                                         <div className="p-6 space-y-3 max-h-[60vh] overflow-y-auto bg-[#0F0F0F]">
-                                            {chat.messages.map((msg: any, idx) => {
+                                            {chat.messages.map((msg: Message, idx) => {
                                                 // Render file attachment
                                                 if (msg.type === 'file') {
                                                     return (

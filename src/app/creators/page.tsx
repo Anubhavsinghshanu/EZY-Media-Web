@@ -27,7 +27,7 @@ export default function CreatorsPage() {
                         animate={{ opacity: 1, y: 0 }}
                         className="text-center mb-16"
                     >
-                        <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tighter uppercase">
+                        <h1 className="text-4xl md:text-7xl font-black mb-6 tracking-tighter uppercase">
                             Our <span className="text-cyan-400">Creators</span>
                         </h1>
                         <p className="text-gray-400 text-xl max-w-2xl mx-auto">
@@ -46,9 +46,11 @@ export default function CreatorsPage() {
                                 className="group relative bg-[#0F0F0F] rounded-3xl border border-white/5 overflow-hidden hover:border-cyan-500/30 transition-all duration-500 shadow-2xl shadow-black/50"
                             >
                                 <div className="aspect-square relative overflow-hidden">
-                                    <img
+                                    <Image
                                         src={creator.image}
                                         alt={creator.name}
+                                        width={400}
+                                        height={400}
                                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[30%] group-hover:grayscale-0"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />

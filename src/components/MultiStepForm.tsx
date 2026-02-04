@@ -42,7 +42,6 @@ export default function MultiStepForm() {
         handleSubmit,
         trigger,
         formState: { errors },
-        watch,
     } = useForm<FormData>({
         resolver: zodResolver(combinedSchema),
         mode: "onChange",
@@ -95,7 +94,7 @@ export default function MultiStepForm() {
                         className="space-y-6"
                     >
                         <h3 className="text-2xl font-bold text-white mb-2">Basic Info</h3>
-                        <p className="text-gray-400 text-sm mb-6">Let's get to know you.</p>
+                        <p className="text-gray-400 text-sm mb-6">Let&apos;s get to know you.</p>
 
                         <div className="space-y-4">
                             <div>
@@ -232,7 +231,7 @@ export default function MultiStepForm() {
                     <FaCheck className="text-4xl text-green-500" />
                 </div>
                 <h2 className="text-3xl font-bold text-white mb-2">Request Received!</h2>
-                <p className="text-gray-400 mb-6">We've received your campaign details. Our team will review them and get back to you within 24 hours.</p>
+                <p className="text-gray-400 mb-6">We&apos;ve received your campaign details. Our team will review them and get back to you within 24 hours.</p>
                 <button
                     onClick={() => window.location.href = '/'}
                     className="px-8 py-3 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition-colors"

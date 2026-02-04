@@ -30,7 +30,7 @@ export default function ContactPage() {
                         animate={{ opacity: 1, y: 0 }}
                         className="text-center mb-20"
                     >
-                        <h1 className="text-5xl md:text-8xl font-black mb-6 tracking-tighter uppercase">
+                        <h1 className="text-4xl md:text-8xl font-black mb-6 tracking-tighter uppercase">
                             Connect <span className="text-cyan-400">With Us</span>
                         </h1>
                         <p className="text-gray-400 text-xl max-w-2xl mx-auto font-medium">
@@ -81,7 +81,7 @@ export default function ContactPage() {
 
                             <div className="mt-16 p-8 rounded-3xl bg-white/5 border border-white/5">
                                 <p className="text-gray-400 leading-relaxed italic">
-                                    "EZY Media transformed our influencer strategy from a side-project to our main growth engine. Their turnaround time is incredible."
+                                    &quot;EZY Media transformed our influencer strategy from a side-project to our main growth engine. Their turnaround time is incredible.&quot;
                                 </p>
                                 <div className="mt-4 flex items-center gap-3">
                                     <div className="w-8 h-8 rounded-full bg-cyan-400/20" />

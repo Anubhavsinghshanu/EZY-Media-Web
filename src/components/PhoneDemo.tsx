@@ -193,7 +193,7 @@ export default function PhoneDemo() {
                             {/* Bio */}
                             <div className="px-4 mb-4">
                                 <p className="font-bold text-sm">EZY MEDIA | Marketing Agency</p>
-                                <p className="text-xs text-gray-300">🚀 India's #1 Creator Agency</p>
+                                <p className="text-xs text-gray-300">🚀 India&apos;s #1 Creator Agency</p>
                                 <p className="text-xs text-gray-300">📈 200M+ Reach Delivered</p>
                             </div>
 
