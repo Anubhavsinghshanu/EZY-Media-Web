@@ -71,15 +71,18 @@ const SongPromotionBook = () => {
     const [direction, setDirection] = useState(0);
 
     const pages = [
-        { title: "Arz Kiya H", artist: "Coke Studio", duration: "5 Days", delivered: "300M+", score: "9.5/10", rank: "#1 on Instagram", color: "from-pink-500 to-rose-500" },
-        { title: "Ni Tu Bar Bar", artist: "Sony Music", duration: "6 Days", delivered: "210M+", score: "9.4/10", rank: "#1 on Instagram", color: "from-purple-500 to-indigo-500" },
-        { title: "Good For Nothing", artist: "T-Series", duration: "5 Days", delivered: "180M+", score: "9.3/10", rank: "#2 on Instagram", color: "from-blue-500 to-cyan-500" },
-        { title: "Bas Ek Dhadak", artist: "Zee Music", duration: "5 Days", delivered: "255M+", score: "9.7/10", rank: "#1 on Instagram", color: "from-red-500 to-orange-500" },
-        { title: "Alvida", artist: "Tips Official", duration: "6 Days", delivered: "250M+", score: "9.5/10", rank: "#1 on Instagram", color: "from-emerald-500 to-teal-500" },
-        { title: "Title Track", artist: "Rito Riba", duration: "6 Days", delivered: "220M+", score: "9.4/10", rank: "Top 5 on Instagram", color: "from-amber-500 to-yellow-500" },
-        { title: "Bas Tera", artist: "Rito Riba", duration: "5 Days", delivered: "180M+", score: "9.3/10", rank: "Top 10 on Instagram", color: "from-violet-500 to-fuchsia-500" },
-        { title: "Sailor", artist: "Badshah", duration: "7 Days", delivered: "250M+", score: "9.6/10", rank: "#2 on Instagram", color: "from-sky-500 to-blue-500" },
-        { title: "Subh Manglam", artist: "Armaan Malik", duration: "6 Days", delivered: "195M+", score: "9.4/10", rank: "Top 3 on Instagram", color: "from-lime-500 to-green-500" }
+        { title: "GHAR KAB AAOGE", artist: "Sony Music", duration: "7 Days", delivered: "210M+", score: "9.8/10", rank: "#1 on Instagram", color: "from-pink-500 to-rose-500" },
+        { title: "JATEY HUE LAMHON", artist: "T-Series", duration: "6 Days", delivered: "170M+", score: "9.6/10", rank: "#2 on Instagram", color: "from-purple-500 to-indigo-500" },
+        { title: "ISHQ DA CHEHRA", artist: "Zee Music", duration: "5 Days", delivered: "150M+", score: "9.5/10", rank: "Trending on Reels", color: "from-blue-500 to-cyan-500" },
+        { title: "Arz Kiya H", artist: "Coke Studio", duration: "5 Days", delivered: "300M+", score: "9.5/10", rank: "#1 on Instagram", color: "from-red-500 to-orange-500" },
+        { title: "Ni Tu Bar Bar", artist: "Sony Music", duration: "6 Days", delivered: "210M+", score: "9.4/10", rank: "#1 on Instagram", color: "from-emerald-500 to-teal-500" },
+        { title: "Good For Nothing", artist: "T-Series", duration: "5 Days", delivered: "180M+", score: "9.3/10", rank: "#2 on Instagram", color: "from-amber-500 to-yellow-500" },
+        { title: "Bas Ek Dhadak", artist: "Zee Music", duration: "5 Days", delivered: "255M+", score: "9.7/10", rank: "#1 on Instagram", color: "from-violet-500 to-fuchsia-500" },
+        { title: "Alvida", artist: "Tips Official", duration: "6 Days", delivered: "250M+", score: "9.5/10", rank: "#1 on Instagram", color: "from-sky-500 to-blue-500" },
+        { title: "Title Track", artist: "Rito Riba", duration: "6 Days", delivered: "220M+", score: "9.4/10", rank: "Top 5 on Instagram", color: "from-lime-500 to-green-500" },
+        { title: "Bas Tera", artist: "Rito Riba", duration: "5 Days", delivered: "180M+", score: "9.3/10", rank: "Top 10 on Instagram", color: "from-rose-500 to-pink-500" },
+        { title: "Sailor", artist: "Badshah", duration: "7 Days", delivered: "250M+", score: "9.6/10", rank: "#2 on Instagram", color: "from-indigo-500 to-purple-500" },
+        { title: "Subh Manglam", artist: "Armaan Malik", duration: "6 Days", delivered: "195M+", score: "9.4/10", rank: "Top 3 on Instagram", color: "from-cyan-500 to-blue-500" }
     ];
 
     const nextPage = () => {

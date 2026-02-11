@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Montserrat, Poppins, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import CreatorNotificationPopup from "@/components/CreatorNotificationPopup";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -44,6 +45,7 @@ export default function RootLayout({
         className={`${montserrat.variable} ${poppins.variable} ${playfair.variable} antialiased bg-black text-white overflow-x-hidden`}
       >
         {children}
+        <CreatorNotificationPopup />
       </body>
     </html>
   );

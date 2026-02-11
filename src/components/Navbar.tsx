@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { FaChevronDown, FaWhatsapp, FaEnvelope, FaCalendarAlt, FaCheck, FaArrowRight } from "react-icons/fa";
+import { FaChevronDown, FaWhatsapp, FaEnvelope, FaCalendarAlt, FaCheck, FaArrowRight, FaRocket, FaHandshake } from "react-icons/fa";
 
 // --- Data & Content ---
 
@@ -22,6 +22,7 @@ export default function Navbar() {
     const [activeMenu, setActiveMenu] = useState<string | null>(null);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
+    const [showCallOptions, setShowCallOptions] = useState(false);
 
     // Scroll Logic
     useMotionValueEvent(scrollY, "change", (latest) => {
@@ -204,20 +205,57 @@ export default function Navbar() {
                             <p className="text-gray-400 text-sm mb-6">Choose how you&apos;d like to reach us.</p>
 
                             <div className="space-y-3 mb-6">
-                                <Link
-                                    href="/book"
-                                    onClick={() => setModalOpen(false)}
-                                    className="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-cyan-500/30 transition-all group shadow-sm hover:shadow-cyan-900/10"
-                                >
-                                    <div className="w-10 h-10 rounded-full bg-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform">
-                                        <FaCalendarAlt />
+                                {showCallOptions ? (
+                                    <div className="bg-white/5 rounded-xl border border-white/10 overflow-hidden">
+                                        <div
+                                            onClick={() => setShowCallOptions(false)}
+                                            className="p-4 flex items-center gap-3 border-b border-white/5 cursor-pointer hover:bg-white/5 transition-colors"
+                                        >
+                                            <div className="w-8 h-8 rounded-full bg-cyan-500/10 flex items-center justify-center text-cyan-400">
+                                                <FaChevronDown className="rotate-180 text-xs" />
+                                            </div>
+                                            <span className="text-sm font-bold text-white">Select Call Type</span>
+                                        </div>
+
+                                        <div className="p-2 space-y-1">
+                                            <Link href="/book?type=growth" onClick={() => setModalOpen(false)} className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors group">
+                                                <FaRocket className="text-purple-400 text-sm" />
+                                                <div>
+                                                    <div className="text-sm font-bold text-gray-200 group-hover:text-white">Growth Strategy</div>
+                                                    <div className="text-[10px] text-gray-500">For Brands & Agencies</div>
+                                                </div>
+                                            </Link>
+                                            <Link href="/book?type=creator" onClick={() => setModalOpen(false)} className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors group">
+                                                <FaHandshake className="text-green-400 text-sm" />
+                                                <div>
+                                                    <div className="text-sm font-bold text-gray-200 group-hover:text-white">Creator Partnership</div>
+                                                    <div className="text-[10px] text-gray-500">For Influencers/Talent</div>
+                                                </div>
+                                            </Link>
+                                            <Link href="/book?type=general" onClick={() => setModalOpen(false)} className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors group">
+                                                <FaCalendarAlt className="text-blue-400 text-sm" />
+                                                <div>
+                                                    <div className="text-sm font-bold text-gray-200 group-hover:text-white">General Inquiry</div>
+                                                    <div className="text-[10px] text-gray-500">Support & Questions</div>
+                                                </div>
+                                            </Link>
+                                        </div>
                                     </div>
-                                    <div className="flex-1">
-                                        <div className="text-sm font-bold text-white">Book a Strategy Call</div>
-                                        <div className="text-xs text-gray-500">Free 30-min strategy call · No sales pitch</div>
-                                    </div>
-                                    <FaArrowRight className="text-gray-600 group-hover:text-white transition-colors text-xs" />
-                                </Link>
+                                ) : (
+                                    <button
+                                        onClick={() => setShowCallOptions(true)}
+                                        className="w-full flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-cyan-500/30 transition-all group shadow-sm hover:shadow-cyan-900/10 text-left"
+                                    >
+                                        <div className="w-10 h-10 rounded-full bg-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform">
+                                            <FaCalendarAlt />
+                                        </div>
+                                        <div className="flex-1">
+                                            <div className="text-sm font-bold text-white">Book a Strategy Call</div>
+                                            <div className="text-xs text-gray-500">Free 30-min strategy call · No sales pitch</div>
+                                        </div>
+                                        <FaArrowRight className="text-gray-600 group-hover:text-white transition-colors text-xs" />
+                                    </button>
+                                )}
 
                                 <a href="https://wa.me/919919119691" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-green-500/30 transition-all group shadow-sm hover:shadow-green-900/10">
                                     <div className="w-10 h-10 rounded-full bg-green-500/10 flex items-center justify-center text-green-400 group-hover:scale-105 transition-transform">

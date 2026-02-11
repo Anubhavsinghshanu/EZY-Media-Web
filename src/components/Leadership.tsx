@@ -1,8 +1,10 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { FaCheckCircle } from 'react-icons/fa';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaCheckCircle, FaRocket, FaHandshake, FaCalendarAlt } from 'react-icons/fa';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const LEADERS = [
     {
@@ -36,6 +38,8 @@ const LEADERS = [
 ];
 
 export default function Leadership() {
+    const [showMenu, setShowMenu] = useState(false);
+
     return (
         <section className="relative py-24 bg-[#050505] overflow-hidden">
             <div className="max-w-5xl mx-auto px-6 relative z-10">
@@ -90,14 +94,56 @@ export default function Leadership() {
                     ))}
                 </div>
 
-                {/* 3D Bubble CTA */}
-                <div className="mt-20 flex justify-center">
+                {/* 3D Bubble CTA with Options */}
+                <div className="mt-20 flex flex-col items-center relative">
+                    <AnimatePresence>
+                        {showMenu && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                className="absolute bottom-full mb-4 w-64 bg-[#0A0A0A] border border-white/10 rounded-xl p-2 shadow-2xl z-20 overflow-hidden"
+                            >
+                                <div className="space-y-1">
+                                    <Link href="/book?type=growth" className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors group">
+                                        <div className="w-8 h-8 rounded-full bg-purple-500/10 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform">
+                                            <FaRocket className="text-sm" />
+                                        </div>
+                                        <div>
+                                            <div className="text-sm font-bold text-white">Growth Strategy</div>
+                                            <div className="text-[10px] text-gray-500">For Brands</div>
+                                        </div>
+                                    </Link>
+                                    <Link href="/book?type=creator" className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors group">
+                                        <div className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center text-green-400 group-hover:scale-110 transition-transform">
+                                            <FaHandshake className="text-sm" />
+                                        </div>
+                                        <div>
+                                            <div className="text-sm font-bold text-white">Creator Partnership</div>
+                                            <div className="text-[10px] text-gray-500">For Talent</div>
+                                        </div>
+                                    </Link>
+                                    <Link href="/book?type=general" className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors group">
+                                        <div className="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
+                                            <FaCalendarAlt className="text-sm" />
+                                        </div>
+                                        <div>
+                                            <div className="text-sm font-bold text-white">General Inquiry</div>
+                                            <div className="text-[10px] text-gray-500">Support</div>
+                                        </div>
+                                    </Link>
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+
                     <motion.button
+                        onClick={() => setShowMenu(!showMenu)}
                         whileHover={{ scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.95 }}
-                        className="relative px-12 py-5 bg-gradient-to-b from-white to-gray-200 text-black font-extrabold uppercase tracking-widest text-sm rounded-full shadow-[0_10px_30px_-10px_rgba(255,255,255,0.3),inset_0_-4px_4px_rgba(0,0,0,0.1)] hover:shadow-[0_15px_40px_-10px_rgba(255,255,255,0.4),inset_0_-4px_4px_rgba(0,0,0,0.1)] transition-all duration-300 group"
+                        className="relative px-12 py-5 bg-gradient-to-b from-white to-gray-200 text-black font-extrabold uppercase tracking-widest text-sm rounded-full shadow-[0_10px_30px_-10px_rgba(255,255,255,0.3),inset_0_-4px_4px_rgba(0,0,0,0.1)] hover:shadow-[0_15px_40px_-10px_rgba(255,255,255,0.4),inset_0_-4px_4px_rgba(0,0,0,0.1)] transition-all duration-300 group z-10"
                     >
-                        <span className="relative z-10">Book a Growth Call</span>
+                        <span className="relative z-10">{showMenu ? 'Close Options' : 'Book a Growth Call'}</span>
                         {/* Bubble Shine */}
                         <div className="absolute top-2 left-6 right-6 h-[40%] bg-gradient-to-b from-white/80 to-transparent rounded-full opacity-60 pointer-events-none" />
                     </motion.button>
