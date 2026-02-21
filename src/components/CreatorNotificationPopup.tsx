@@ -90,10 +90,10 @@ export default function CreatorNotificationPopup() {
         });
         setIsVisible(true);
 
-        // Auto-dismiss after 5 seconds
+        // Auto-dismiss after 7 seconds
         setTimeout(() => {
             setIsVisible(false);
-        }, 5000);
+        }, 7000);
     }, [availableNames]);
 
     // Manual close
@@ -132,10 +132,10 @@ export default function CreatorNotificationPopup() {
         // If modal is open or popup is currently showing, don't schedule new one
         if (isModalOpen || isVisible) return;
 
-        // Calculate delay: 5s for first, random 10-20s for authentic gap
+        // Calculate delay: 8s for first, random 18-35s for natural, human-like gap
         const delay = hasShownFirst.current
-            ? Math.floor(Math.random() * (20000 - 10000 + 1)) + 10000 // Random 10s-20s gap
-            : 5000; // First popup after 5s
+            ? Math.floor(Math.random() * (35000 - 18000 + 1)) + 18000 // Random 18s-35s gap for natural feel
+            : 8000; // First popup after 8s
 
         const timer = setTimeout(() => {
             showNextPopup();
@@ -239,7 +239,7 @@ export default function CreatorNotificationPopup() {
                                 >
                                     <p className="text-sm text-gray-300 leading-relaxed">
                                         <span className="font-bold text-white">{currentPopup.creatorName}</span>
-                                        {' '}joined current{' '}
+                                        {' '}recently joined our community in a{' '}
                                         <span className={`font-semibold bg-gradient-to-r ${MUSIC_CAMPAIGN.color} bg-clip-text text-transparent`}>
                                             music campaign
                                         </span>
@@ -273,12 +273,12 @@ export default function CreatorNotificationPopup() {
                                 </motion.button>
                             </div>
 
-                            {/* Progress bar - Purple/Pink gradient - 5 seconds */}
+                            {/* Progress bar - Purple/Pink gradient - 7 seconds */}
                             <motion.div
                                 className={`absolute bottom-0 left-0 h-[2px] bg-gradient-to-r ${MUSIC_CAMPAIGN.color}`}
                                 initial={{ width: '100%' }}
                                 animate={{ width: '0%' }}
-                                transition={{ duration: 5, ease: 'linear' }}
+                                transition={{ duration: 7, ease: 'linear' }}
                             />
                         </div>
                     </motion.div>

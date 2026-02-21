@@ -8,8 +8,22 @@ import Link from 'next/link';
 
 const LEADERS = [
     {
+        name: "Vishal Singh",
+        role: "Managing Expert",
+        meta: "21 Years · Lucknow",
+        image: "/assets/partner_vishal.jpg",
+        type: "image",
+        borderColor: "border-purple-500/50",
+        shadowColor: "shadow-[0_0_40px_-10px_rgba(168,85,247,0.2)]",
+        points: [
+            "Worked with 15+ managers",
+            "Managed 30+ campaigns",
+            "Boosted performance across multiple launches"
+        ]
+    },
+    {
         name: "Anubhav Singh Shanu",
-        role: "Founder & Strategist",
+        role: "Managing Expert",
         meta: "21 Years · Varanasi",
         image: "/assets/founder_shanu_v2.jpg",
         type: "image",
@@ -19,20 +33,6 @@ const LEADERS = [
             "Worked with more than 10+ brands",
             "Managed 2000+ creators",
             "Leading from 2+ years"
-        ]
-    },
-    {
-        name: "Vishal Singh",
-        role: "Strategic Partner",
-        meta: "21 Years · Lucknow",
-        image: "/assets/partner_vishal.jpg",
-        type: "image",
-        borderColor: "border-purple-500/50",
-        shadowColor: "shadow-[0_0_40px_-10px_rgba(168,85,247,0.2)]",
-        points: [
-            "Strategy expert",
-            "Managed 30+ campaigns",
-            "Boosted performance across multiple launches"
         ]
     }
 ];
