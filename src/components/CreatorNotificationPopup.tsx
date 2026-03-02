@@ -4,58 +4,21 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Expanded Indian creator names pool (40+ names)
-const CREATOR_NAMES = [
-    'Rahul Verma',
-    'Priya Sharma',
-    'Arjun Patel',
-    'Ananya Singh',
-    'Rohan Gupta',
-    'Diya Kapoor',
-    'Vikram Reddy',
-    'Neha Malhotra',
-    'Kabir Khan',
-    'Ishita Mehta',
-    'Aditya Joshi',
-    'Sanya Rao',
-    'Varun Desai',
-    'Kiara Bhatia',
-    'Aarav Chawla',
-    'Sneha Iyer',
-    'Karan Saxena',
-    'Pooja Nair',
-    'Siddharth Kulkarni',
-    'Riya Das',
-    'Ayush Agarwal',
-    'Tanvi Menon',
-    'Harsh Pandey',
-    'Navya Khanna',
-    'Shaurya Chopra',
-    'Aditi Bansal',
-    'Nikhil Thakur',
-    'Shreya Ghosh',
-    'Vivek Bose',
-    'Meera Pillai',
-    'Yash Shetty',
-    'Simran Ahuja',
-    'Dhruv Mishra',
-    'Kavya Rane',
-    'Aryan Bajaj',
-    'Nidhi Sinha',
-    'Akash Chauhan',
-    'Tanya Dubey',
-    'Arnav Varma',
-    'Ishaan Rana',
-    'Ritu Kaur',
-    'Mohit Bhargava',
-    'Sakshi Jain'
+const POPUP_MESSAGES = [
+    { text: "400+ creators worked in MUSIC CAMPAIGN of song KYA BATAUN TUJHE", emoji: "🎵", color: "from-purple-500 to-pink-500" },
+    { text: "300+ creators worked in MUSIC CAMPAIGN of song NIKKI NIKKI GAL", emoji: "🚀", color: "from-blue-500 to-cyan-500" },
+    { text: "385+ creators worked in MUSIC CAMPAIGN of song GHAR KAB AAOGE", emoji: "📈", color: "from-emerald-500 to-teal-500" },
+    { text: "420+ creators worked in MUSIC CAMPAIGN of song ISHQ DA CHEHRA", emoji: "🔥", color: "from-orange-500 to-red-500" },
+    { text: "275+ creators worked in MUSIC CAMPAIGN of song JATEY HUE LAMHON", emoji: "🌟", color: "from-indigo-500 to-purple-500" },
+    { text: "310+ creators worked in MUSIC CAMPAIGN of song BAS EK DHADAK", emoji: "💎", color: "from-pink-500 to-rose-500" },
+    { text: "440+ creators worked in MUSIC CAMPAIGN of song ARZ KIYA HAI", emoji: "🎉", color: "from-yellow-400 to-orange-500" },
+    { text: "EZY MEDIA IS NOW #1 MUSIC PROMOTION AGENCY", emoji: "🏆", color: "from-amber-400 to-yellow-600" },
+    { text: "EZY MEDIA IS NOW #1 MUSIC PROMOTION AGENCY", emoji: "👑", color: "from-amber-400 to-yellow-600" }
 ];
-
-// Fixed campaign - Music Promotion only
-const MUSIC_CAMPAIGN = { name: 'Music Promotion', emoji: '🎵', color: 'from-purple-500 to-pink-500' };
 
 interface PopupData {
     id: number;
-    creatorName: string;
+    messageData: { text: string; emoji: string; color: string };
 }
 
 export default function CreatorNotificationPopup() {
@@ -67,26 +30,26 @@ export default function CreatorNotificationPopup() {
         niche: ''
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [usedNames, setUsedNames] = useState<string[]>([]);
-    const [availableNames, setAvailableNames] = useState<string[]>([...CREATOR_NAMES]);
+    const [usedMessages, setUsedMessages] = useState<number[]>([]);
+    const [availableMessages, setAvailableMessages] = useState<number[]>(POPUP_MESSAGES.map((_, i) => i));
 
-    // Show next popup with no name repetition
+    // Show next popup with no repetition until all are shown
     const showNextPopup = useCallback(() => {
-        // If all names have been used, reset the pool
-        let namesToUse = availableNames.length > 0 ? availableNames : [...CREATOR_NAMES];
+        // If all messages have been used, reset the pool
+        let itemsToUse = availableMessages.length > 0 ? availableMessages : POPUP_MESSAGES.map((_, i) => i);
 
-        // Pick a random name from available names
-        const randomIndex = Math.floor(Math.random() * namesToUse.length);
-        const selectedName = namesToUse[randomIndex];
+        // Pick a random message index from available items
+        const randomQueueIndex = Math.floor(Math.random() * itemsToUse.length);
+        const selectedMessageIndex = itemsToUse[randomQueueIndex];
 
-        // Remove selected name from available names
-        const newAvailableNames = namesToUse.filter((_, index) => index !== randomIndex);
-        setAvailableNames(newAvailableNames);
-        setUsedNames((prev) => [...prev, selectedName]);
+        // Remove selected message from available ones
+        const newAvailableMessages = itemsToUse.filter((_, index) => index !== randomQueueIndex);
+        setAvailableMessages(newAvailableMessages);
+        setUsedMessages((prev) => [...prev, selectedMessageIndex]);
 
         setCurrentPopup({
             id: Date.now(),
-            creatorName: selectedName
+            messageData: POPUP_MESSAGES[selectedMessageIndex]
         });
         setIsVisible(true);
 
@@ -94,7 +57,7 @@ export default function CreatorNotificationPopup() {
         setTimeout(() => {
             setIsVisible(false);
         }, 7000);
-    }, [availableNames]);
+    }, [availableMessages]);
 
     // Manual close
     const handleClose = () => {
@@ -167,8 +130,8 @@ export default function CreatorNotificationPopup() {
                             {/* Soft glow */}
                             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
 
-                            {/* Top accent line - Purple/Pink gradient for music */}
-                            <div className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r ${MUSIC_CAMPAIGN.color}`} />
+                            {/* Top accent line - Dynamic color */}
+                            <div className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r ${currentPopup.messageData.color}`} />
 
                             {/* Celebration Confetti Particles */}
                             {[...Array(8)].map((_, i) => (
@@ -230,19 +193,16 @@ export default function CreatorNotificationPopup() {
                                     </svg>
                                 </button>
 
-                                {/* Concise message - "Creator Name joined current music campaign" */}
+                                {/* Concise message - "Data point" */}
                                 <motion.div
-                                    className="pr-6 mb-2"
+                                    className="pr-6 mb-2 flex items-start gap-2"
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.2, duration: 0.4 }}
                                 >
-                                    <p className="text-sm text-gray-300 leading-relaxed">
-                                        <span className="font-bold text-white">{currentPopup.creatorName}</span>
-                                        {' '}recently joined our community in a{' '}
-                                        <span className={`font-semibold bg-gradient-to-r ${MUSIC_CAMPAIGN.color} bg-clip-text text-transparent`}>
-                                            music campaign
-                                        </span>
+                                    <span className="text-xl mt-0.5">{currentPopup.messageData.emoji}</span>
+                                    <p className="text-sm text-gray-300 leading-relaxed font-medium">
+                                        {currentPopup.messageData.text}
                                     </p>
                                 </motion.div>
 
@@ -254,7 +214,7 @@ export default function CreatorNotificationPopup() {
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: 0.4 }}
                                 >
-                                    <span>Join as Creator</span>
+                                    <span>Promote Your Brand</span>
                                     <svg
                                         width="12"
                                         height="12"
@@ -273,9 +233,9 @@ export default function CreatorNotificationPopup() {
                                 </motion.button>
                             </div>
 
-                            {/* Progress bar - Purple/Pink gradient - 7 seconds */}
+                            {/* Progress bar - Dynamic gradient - 7 seconds */}
                             <motion.div
-                                className={`absolute bottom-0 left-0 h-[2px] bg-gradient-to-r ${MUSIC_CAMPAIGN.color}`}
+                                className={`absolute bottom-0 left-0 h-[2px] bg-gradient-to-r ${currentPopup.messageData.color}`}
                                 initial={{ width: '100%' }}
                                 animate={{ width: '0%' }}
                                 transition={{ duration: 7, ease: 'linear' }}

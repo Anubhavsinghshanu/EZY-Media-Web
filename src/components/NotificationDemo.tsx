@@ -20,8 +20,8 @@ export default function NotificationDemo() {
     // Note: These are demo triggers - you'll need to implement actual notification triggers
     // in your NotificationSystem component or create a global notification context
 
-    const triggerCreatorJoin = () => {
-        console.log('🎯 Triggering Creator Join Notification');
+    const triggerDataPopup = () => {
+        console.log('🎯 Triggering Data Notification');
         // Dispatch custom event that NotificationSystem listens to
         window.dispatchEvent(new CustomEvent('trigger-notification', {
             detail: { type: 'creator-join' }
@@ -80,12 +80,12 @@ export default function NotificationDemo() {
                             {/* Type 1: Creator Join */}
                             <div>
                                 <button
-                                    onClick={triggerCreatorJoin}
+                                    onClick={triggerDataPopup}
                                     className="w-full px-4 py-3 rounded-lg bg-purple-600/20 border border-purple-500/30 text-white hover:bg-purple-600/30 transition-all text-left"
                                 >
                                     <div className="flex items-center gap-2 mb-1">
                                         <span className="text-lg">✨</span>
-                                        <span className="font-semibold text-sm">Creator Join</span>
+                                        <span className="font-semibold text-sm">Data Popup</span>
                                     </div>
                                     <p className="text-xs text-white/60">
                                         Bottom-left popup • 10s auto-dismiss

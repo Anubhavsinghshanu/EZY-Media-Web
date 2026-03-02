@@ -1,15 +1,20 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // ==================== CONFIGURATION ====================
 
-const CREATOR_NAMES = [
-    'Aarav Sharma', 'Neha Kapoor', 'Rohan Verma', 'Priya Singh',
-    'Arjun Patel', 'Ananya Reddy', 'Vivaan Kumar', 'Diya Gupta',
-    'Aditya Joshi', 'Ishita Mehta', 'Kabir Shah', 'Saanvi Desai',
-    'Reyansh Malhotra', 'Aadhya Iyer', 'Vihaan Nair', 'Zara Khan'
+const NOTIFICATIONS_DATA = [
+    { icon: '🎵', title: 'Campaign Success', text: '412+ creators worked in MUSIC CAMPAIGN of song KYA BATAUN TUJHE' },
+    { icon: '🚀', title: 'Trending Campaign', text: '304+ creators worked in MUSIC CAMPAIGN of song NIKKI NIKKI GAL' },
+    { icon: '📈', title: 'Massive Reach', text: '289+ creators worked in MUSIC CAMPAIGN of song GHAR KAB AAOGE' },
+    { icon: '🔥', title: 'Viral Hit', text: '436+ creators worked in MUSIC CAMPAIGN of song ISHQ DA CHEHRA' },
+    { icon: '🌟', title: 'Creator Collaboration', text: '375+ creators worked in MUSIC CAMPAIGN of song JATEY HUE LAMHON' },
+    { icon: '💎', title: 'Growth Milestone', text: '261+ creators worked in MUSIC CAMPAIGN of song BAS EK DHADAK' },
+    { icon: '🎉', title: 'Chart Topper', text: '445+ creators worked in MUSIC CAMPAIGN of song ARZ KIYA HAI' },
+    { icon: '🏆', title: 'Achievement Unlocked', text: 'EZY MEDIA IS NOW #1 MUSIC PROMOTION AGENCY' },
+    { icon: '👑', title: 'Industry Leaders', text: 'EZY MEDIA IS NOW #1 MUSIC PROMOTION AGENCY' },
 ];
 
 // ==================== TYPES ====================
@@ -25,13 +30,13 @@ interface Notification {
 // ==================== CONFETTI COMPONENT ====================
 
 const Confetti = () => {
-    const particles = Array.from({ length: 30 }, (_, i) => ({
+    const particles = React.useMemo(() => Array.from({ length: 30 }, (_, i) => ({
         id: i,
         color: ['#8B5CF6', '#3B82F6', '#F59E0B', '#EC4899'][i % 4],
         delay: Math.random() * 0.3,
         x: Math.random() * 100,
         rotation: Math.random() * 360,
-    }));
+    })), []);
 
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -64,13 +69,13 @@ const Confetti = () => {
 // ==================== SPARKLE COMPONENT ====================
 
 const Sparkles = () => {
-    const sparkles = Array.from({ length: 12 }, (_, i) => ({
+    const sparkles = React.useMemo(() => Array.from({ length: 12 }, (_, i) => ({
         id: i,
         size: Math.random() * 4 + 2,
         x: Math.random() * 100,
         y: Math.random() * 100,
         delay: Math.random() * 0.5,
-    }));
+    })), []);
 
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -101,9 +106,9 @@ const Sparkles = () => {
     );
 };
 
-// ==================== TYPE 1: CREATOR JOIN POPUP ====================
+// ==================== TYPE 1: DATA POPUP ====================
 
-const CreatorJoinPopup = ({ creatorName, onClose }: { creatorName: string; onClose: () => void }) => {
+const DataPopup = ({ data, onClose }: { data: { icon: string; title: string; text: string }; onClose: () => void }) => {
     return (
         <motion.div
             initial={{ opacity: 0, y: 50, scale: 0.96 }}
@@ -115,7 +120,7 @@ const CreatorJoinPopup = ({ creatorName, onClose }: { creatorName: string; onClo
             }}
             className="fixed z-[9999] bottom-6 left-6 md:bottom-8 md:left-8 max-md:left-1/2 max-md:-translate-x-1/2 pointer-events-auto"
             style={{
-                maxWidth: '380px',
+                maxWidth: '420px',
                 width: 'calc(100vw - 3rem)',
             }}
         >
@@ -151,31 +156,28 @@ const CreatorJoinPopup = ({ creatorName, onClose }: { creatorName: string; onClo
                     </button>
 
                     {/* Icon */}
-                    <div className="flex items-start gap-3 mb-3">
-                        <div className="relative flex-shrink-0">
+                    <div className="flex items-start gap-4 mb-3">
+                        <div className="relative flex-shrink-0 mt-1">
                             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 blur-md opacity-60 animate-pulse" />
-                            <div className="relative w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg">
-                                <span className="text-lg">✨</span>
+                            <div className="relative w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg">
+                                <span className="text-xl">{data.icon}</span>
                             </div>
                         </div>
 
-                        <div className="flex-1 pt-1">
-                            <h3 className="text-white font-bold text-base mb-1 tracking-tight">
-                                ✨ New Creator Joined
+                        <div className="flex-1">
+                            <h3 className="text-white font-bold text-base mb-1.5 tracking-tight flex items-center gap-1.5">
+                                {data.icon} {data.title}
                             </h3>
-                            <p className="text-white/80 text-sm leading-snug">
-                                <span className="font-semibold text-purple-300">
-                                    {creatorName}
-                                </span>
-                                {' '}just joined our Creator Network
+                            <p className="text-white/80 text-sm leading-relaxed">
+                                {data.text}
                             </p>
                         </div>
                     </div>
 
                     {/* Micro CTA */}
                     <div className="mt-4 pt-3 border-t border-white/10">
-                        <p className="text-purple-400 text-xs font-semibold tracking-wide">
-                            Join as a Creator →
+                        <p className="text-purple-400 text-xs font-semibold tracking-wide hover:text-purple-300 transition-colors cursor-pointer w-max">
+                            Promote Your Brand →
                         </p>
                     </div>
 
@@ -460,11 +462,11 @@ export default function NotificationSystem() {
         setCurrentNotification(null);
     }, [currentNotification]);
 
-    // TYPE 1: Creator Join - Every 30 seconds
+    // TYPE 1: Data Popup - Every 30 seconds
     useEffect(() => {
         const interval = setInterval(() => {
-            const creatorName = CREATOR_NAMES[creatorIndex % CREATOR_NAMES.length];
-            addNotification('creator-join', { creatorName });
+            const dataItem = NOTIFICATIONS_DATA[creatorIndex % NOTIFICATIONS_DATA.length];
+            addNotification('creator-join', { popupData: dataItem });
             setCreatorIndex((prev) => prev + 1);
         }, 30000);
 
@@ -525,8 +527,8 @@ export default function NotificationSystem() {
             const { type } = event.detail;
 
             if (type === 'creator-join') {
-                const creatorName = CREATOR_NAMES[Math.floor(Math.random() * CREATOR_NAMES.length)];
-                addNotification('creator-join', { creatorName });
+                const dataItem = NOTIFICATIONS_DATA[Math.floor(Math.random() * NOTIFICATIONS_DATA.length)];
+                addNotification('creator-join', { popupData: dataItem });
             } else if (type === 'trending-campaign') {
                 addNotification('trending-campaign');
             } else if (type === 'celebration') {
@@ -547,9 +549,9 @@ export default function NotificationSystem() {
             {currentNotification && (
                 <>
                     {currentNotification.type === 'creator-join' && (
-                        <CreatorJoinPopup
+                        <DataPopup
                             key={currentNotification.id}
-                            creatorName={currentNotification.data.creatorName}
+                            data={currentNotification.data.popupData}
                             onClose={() => closeNotification(true)}
                         />
                     )}
