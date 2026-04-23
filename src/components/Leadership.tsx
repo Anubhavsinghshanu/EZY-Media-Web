@@ -8,10 +8,11 @@ import Link from 'next/link';
 
 const LEADERS = [
     {
-        name: "Vishal Singh",
-        role: "Managing Expert",
-        meta: "21 Years · Lucknow",
-        image: "/assets/partner_vishal.jpg",
+        name: "MAYANK SINGH",
+        role: "Founder",
+        meta: "Founder",
+        image: "/assets/partner_mayank.jpg",
+        imageClassName: "object-cover object-[center_10%]", // Adjust positioning to fit the photo perfectly
         type: "image",
         borderColor: "border-purple-500/50",
         shadowColor: "shadow-[0_0_40px_-10px_rgba(168,85,247,0.2)]",
@@ -69,7 +70,7 @@ export default function Leadership() {
                                         alt={leader.name}
                                         width={144}
                                         height={144}
-                                        className="w-full h-full object-cover filter contrast-[1.05]"
+                                        className={`w-full h-full filter contrast-[1.05] ${leader.imageClassName || 'object-cover'}`}
                                     />
                                 </div>
                             </div>
