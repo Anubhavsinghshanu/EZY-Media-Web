@@ -8,9 +8,24 @@ import Link from 'next/link';
 
 const LEADERS = [
     {
-        name: "MAYANK SINGH",
+        name: "Anubhav Singh Shanu",
         role: "Founder",
-        meta: "Founder",
+        meta: "21 Years · Varanasi",
+        image: "/assets/EZYFOUNDER.jpeg",
+        imageClassName: "object-cover object-[center_15%] scale-[1.3]", // Adjusted for portrait photo
+        type: "image",
+        borderColor: "border-cyan-500/50",
+        shadowColor: "shadow-[0_0_40px_-10px_rgba(6,182,212,0.2)]",
+        points: [
+            "Worked with more than 10+ brands",
+            "Managed 2000+ creators",
+            "Leading from 2+ years"
+        ]
+    },
+    {
+        name: "MAYANK SINGH",
+        role: "Co-Founder",
+        meta: "Co-Founder",
         image: "/assets/partner_mayank.jpg",
         imageClassName: "object-cover object-[center_10%]", // Adjust positioning to fit the photo perfectly
         type: "image",
@@ -20,20 +35,6 @@ const LEADERS = [
             "Worked with 15+ managers",
             "Managed 30+ campaigns",
             "Boosted performance across multiple launches"
-        ]
-    },
-    {
-        name: "Anubhav Singh Shanu",
-        role: "Managing Expert",
-        meta: "21 Years · Varanasi",
-        image: "/assets/founder_shanu_v2.jpg",
-        type: "image",
-        borderColor: "border-cyan-500/50",
-        shadowColor: "shadow-[0_0_40px_-10px_rgba(6,182,212,0.2)]",
-        points: [
-            "Worked with more than 10+ brands",
-            "Managed 2000+ creators",
-            "Leading from 2+ years"
         ]
     }
 ];
